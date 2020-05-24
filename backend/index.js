@@ -10,6 +10,32 @@ const usersRoutes = require('./routes/user-routes');
 const productRoutes = require('./routes/product-routes');
 const cartRoutes = require('./routes/cart-routes');
 
+app.use(bodyParser.json());
+
+ // user routes 
+app.use('/api/users', usersRoutes);
+
+// product routes 
+app.use('api/products' , productRoutes);
+
+// cart routes
+app.use('api/cart', cartRoutes);
+
+
+app.use((req,res,next) => {
+	const error = new HttpError('Could not find this route.');
+	throw error;
+});
+
+
+app.use((error, req, res, next) => {
+  if (res.headerSent) {
+    return next(error);
+  }
+  res.status(error.code || 500);
+  res.json({ message: error.message || 'An unknown error occurred!' });
+});
+
 
 mongoose
   .connect(
