@@ -11,6 +11,6 @@ router.get('/',productControllers.getProducts);
 router.post('/create',productControllers.createProduct);
 
 // to add data of a product by admin
-router.patch('/update',productControllers.updateProduct);
+router.patch('/update/:pid',productControllers.updateProduct);
 
 module.exports = router;

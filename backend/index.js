@@ -16,10 +16,10 @@ app.use(bodyParser.json());
 app.use('/api/users', usersRoutes);
 
 // product routes 
-app.use('api/products' , productRoutes);
+app.use('/api/products' , productRoutes);
 
 // cart routes
-app.use('api/cart', cartRoutes);
+app.use('/api/cart', cartRoutes);
 
 
 app.use((req,res,next) => {
