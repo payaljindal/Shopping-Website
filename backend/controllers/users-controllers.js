@@ -2,7 +2,7 @@ const mongoose = require('mongoose');
 const Users = require('../models/user-model');
 const HttpError = require('../models/http-error');
 const bcrypt = require('bcryptjs');
-
+const { validationResult } = require('express-validator');
 
 
 const getUsers = async (req,res,next) => {
@@ -20,6 +20,12 @@ const getUsers = async (req,res,next) => {
 }
 
 const signup = async (req,res,next) => {
+  const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(
+      new HttpError('Invalid inputs passed, please check your data.', 422),
+    );
+  }
 
 	const{ name, email , password } = req.body;
 	
@@ -126,6 +132,14 @@ const login = async (req,res,next) => {
 
 }
 const changepassword = async (req,res,next) => {
+
+ const errors = validationResult(req);
+  if (!errors.isEmpty()) {
+    return next(
+      new HttpError('Invalid inputs passed, please check your data.', 422),
+    );
+  }
+
   const { prevPassword, newPassword } = req.body;
   const userid = req.params.uid;
   
@@ -180,7 +194,24 @@ const changepassword = async (req,res,next) => {
 
 }
 
+const logout = (req,res,next) => {
+  req.logout();
+  res.redirect('/signup');
+
+}
+
+const profile = (req,res,next) => {
+  
+    console.log("profie page");
+    res.json({
+      message : "profile page"
+    })
+
+}
+
 exports.getUsers = getUsers;
 exports.signup = signup;
 exports.login = login;
 exports.changepassword = changepassword;
+exports.logout = logout;
+exports.profile = profile;

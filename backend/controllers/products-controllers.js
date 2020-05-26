@@ -66,7 +66,7 @@ const createProduct = async (req,res,next) => {
 };
 
 const updateProduct = async (req,res,next) => {
-  const{ name, flavour, texture, taste, suggesteduse, price , category } = req.body;
+   const{ name, flavour, texture, taste, suggesteduse, price , category } = req.body;
   
   
   let existing;
@@ -109,7 +109,7 @@ const updateProduct = async (req,res,next) => {
     await existing.save();
   } catch (err) {
     return next(
-      new HttpError('Could Not Update Password. Please Try Again.', 422),
+      new HttpError('Could Not Update Product. Please Try Again.', 422),
     );
   }
 

@@ -6,9 +6,21 @@ const mongoose = require('mongoose');
 
 const HttpError = require('./models/http-error');
 
+
+const session = require('express-session');
+const mongostore = require('connect-mongo')(session);
+
 const usersRoutes = require('./routes/user-routes');
 const productRoutes = require('./routes/product-routes');
 const cartRoutes = require('./routes/cart-routes');
+
+app.use(session({
+  secret : 'mysupersecret',
+  resave : false,
+  saveUninitialized : false,
+  store : new mongostore({ mongooseConnection : mongoose.connection }),
+  cookie : { maxAge : 180 * 60 * 1000 }
+}));
 
 app.use(bodyParser.json());
 

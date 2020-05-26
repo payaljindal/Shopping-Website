@@ -4,11 +4,12 @@ const schema = mongoose.Schema;
 
 const productSchema = new schema({
 	name : {type : String, required : true, unique: true},
-	texture : {type : String , required : true},
+	// imagepath: {type: String , required : true},
+	texture : {type : String },
 	flavour : {type : String },
 	taste : { type : String},
 	suggesteduse  : {type : String},
-	price : { type : String},
+	price : { type : Number},
 	category : {type : String}
 });
 
