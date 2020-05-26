@@ -119,6 +119,10 @@ const updateProduct = async (req,res,next) => {
   });
 };
 
+
+
+// delete product option to be added
+
 exports.getProducts = getProducts;
 exports.createProduct = createProduct;
 exports.updateProduct = updateProduct;

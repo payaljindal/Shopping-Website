@@ -12,4 +12,7 @@ router.get('/addtocart/:pid', cartControllers.addtocart);
 // remove from cart
 router.patch('/removefromcart', cartControllers.removefromcart);
 
+router.post('/checkout',cartControllers.checkout);
+// checkout the list
+
 module.exports = router;

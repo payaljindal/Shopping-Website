@@ -3,7 +3,8 @@ const Users = require('../models/user-model');
 const HttpError = require('../models/http-error');
 const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator');
-
+const Order = require('../models/order-model.js')
+const Cart = require('../models/cart-model.js')
 
 const getUsers = async (req,res,next) => {
 
@@ -200,8 +201,23 @@ const logout = (req,res,next) => {
 
 }
 
+
+// to be added
 const profile = (req,res,next) => {
-  
+    
+    // Order.find({user : req.user}, function(err,orders){
+    //   if(err){
+    //     return res.write('Errorr');
+    //   }
+    //   var cart;
+    //   orders.forEach(function(order){
+    //     cart = new Cart(order.cart);
+    //     order.items = cart.generatearray();
+    //   });
+    //   res.render('user/profile', {orders : orders});
+    // });
+
+
     console.log("profie page");
     res.json({
       message : "profile page"
