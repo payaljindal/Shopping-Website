@@ -1,0 +1,63 @@
+/* vc margin bottom*/
+body .wpb_button, body .wpb_content_element, body ul.wpb_thumbnails-fluid>li{
+    margin-bottom: 0;
+}
+
+.eg-monroe-element-0 {
+    font-size: 13px !important;
+    line-height: 30px !important;
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    padding: 3px 15px 2px 15px !important;
+    border-radius: 3px 3px 3px 3px !important;
+    background-color: rgba(105,189,67,1) !important;
+    z-index: 2 !important;
+    display: block;
+    font-family: "Raleway" !important;
+    border-top-width: 0px !important;
+    border-right-width: 0px !important;
+    border-bottom-width: 3px !important;
+    border-left-width: 0px !important;
+    border-color: #3ba53a !important;
+    border-style: solid !important;
+}
+.eg-monroe-element-0:hover{
+	border-color: transparent !important;
+}
+
+.woocommerce .products .product-category > a, .woocommerce .products .product > a{
+	padding: 0;
+	border: 0;
+}
+
+.wpb_wrapper .shop-newstetter .primary-sidebar{
+    padding-bottom: 0 !important;
+}
+.wpb_wrapper .widget_newsletterwidget{
+    margin-bottom: 0;
+}
+.wpb_wrapper .newsletter-email{
+    float: left;
+    background: #fff;
+    color: #666;
+    box-shadow: none;
+    border: 0 !important;
+    border-radius: 0;
+    padding: 7px 10px;
+    font-size: 13px;
+}
+.wpb_wrapper .newsletter-submit{
+    float: left;
+    margin-left: 10px;
+    background: #fff;
+    color: #666;
+    box-shadow: none;
+    border-radius: 0;
+    padding: 4px 10px;
+    font-size: 13px;
+    line-height: 18px;
+}
+.wpb_wrapper .newsletter-submit:hover,.wpb_wrapper .newsletter-submit:focus{
+    background: rgba(255,255,255,0.8);
+    outline: none;
+}
