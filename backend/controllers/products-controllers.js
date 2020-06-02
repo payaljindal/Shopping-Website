@@ -4,16 +4,41 @@ const HttpError = require('../models/http-error');
 
 
 const getProducts = async (req,res,next) => {
-    let users;
+    let products;
   try{
-    users = await Products.find({});
+    products = await Products.find({});
   }catch{
     return next(new HttpError('Could not get products list. Please try again later')
       );
   }
 
-  res.status(200).json({ Products: users.map((users) => users.toObject({ getters: true })) });
+  // res.status(200).json({ Products: products.map((products) => products.toObject({ getters: true })) });
+  res.render('shop/index', {title: 'Shopping Cart', products: products} );
 };
+
+// const getProducts = async (req,res,next) => {
+
+//   // re s.json({ "meass" : "pahunch gya"})
+//     // Products.find(function (err, docs) {
+//     //     var productChunks = [];
+//     //     var chunkSize = 3;
+//     //     for (var i = 0; i < docs.length; i += chunkSize) {
+//     //         productChunks.push(docs.slice(i, i + chunkSize));
+
+//         let products;
+//   try{
+//     products = await Products.find({});
+//   }catch{
+//     return next(new HttpError('Could not get products list. Please try again later')
+//       );
+//     //     }
+//         res.render('shop/index', {title: 'Shopping Cart', products: products});
+//     // });
+//     // res.render('shop/index', { title: 'Express' });
+// };
+
+
+
 
 const createProduct = async (req,res,next) => {
   const{ name, flavour, texture, taste, suggesteduse, price , category } = req.body;
@@ -37,6 +62,7 @@ const createProduct = async (req,res,next) => {
 
     
     const created = new Products({
+      imagepath : 'https://pmcdeadline2.files.wordpress.com/2014/02/minecraft__140227211000.jpg',
       name,
       flavour,
       texture,

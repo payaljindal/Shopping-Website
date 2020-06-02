@@ -1,5 +1,5 @@
 const express = require('express');
-
+const expressHbs = require('express-handlebars');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
@@ -22,13 +22,19 @@ app.use(session({
   cookie : { maxAge : 180 * 60 * 1000 }
 }));
 
+// view engine setup
+app.engine('.hbs', expressHbs({defaultLayout: 'layout', extname: '.hbs'}));
+app.set('view engine', '.hbs');
+
+
+
 app.use(bodyParser.json());
 
  // user routes 
 app.use('/api/users', usersRoutes);
 
 // product routes 
-app.use('/api/products' , productRoutes);
+app.use('/' , productRoutes);
 
 // cart routes
 app.use('/api/cart', cartRoutes);
