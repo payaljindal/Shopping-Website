@@ -29,5 +29,46 @@ const getProducts = async (req,res,next) => {
 };
 
 
+const details = async (req,res,next) => {
+
+  const id = req.params.id;
+
+
+  var errors;
+
+  if (req.session.errors)
+      errors = req.session.errors;
+  req.session.errors = null;
+
+
+      Product.findById(id, function (err, p) {
+          if (err) {
+              console.log(err);
+              res.redirect('/');
+          } else {
+                      res.render('details', {
+                          name : p.name,
+                          errors: errors,
+                          flavour : p.flavour,
+                          texture : p.texture,
+                          suggesteduse : p.suggesteduse,
+                          category: p.category,
+                          price: parseFloat(p.price).toFixed(2),
+                          image: p.image,
+                          id: p._id
+                      });
+                  }    
+          
+      });
+
+  // res.render('details', {
+  //   title: 'Shopping Cart',
+      
+  // });
+
+};
+
+
 
 exports.getProducts = getProducts;
+exports.details = details;
