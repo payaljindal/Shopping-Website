@@ -66,7 +66,7 @@ app.use('/admin/products',adminRoutes);
 app.use('/api/users', usersRoutes);
 
 // product routes 
-app.use('/' , productRoutes);
+app.use('/products' , productRoutes);
 
 // cart routes
 app.use('/api/cart', cartRoutes);
