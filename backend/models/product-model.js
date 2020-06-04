@@ -4,7 +4,7 @@ const schema = mongoose.Schema;
 
 const productSchema = new schema({
 	name : {type : String, required : true, unique: true},
-	imagepath: {type: String , required : true},
+	image : {type: String , required : true},
 	texture : {type : String },
 	flavour : {type : String },
 	taste : { type : String},
