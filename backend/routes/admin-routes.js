@@ -230,7 +230,7 @@ router.post('/edit-product/:id', async function (req, res) {
 
     const{ name, flavour, texture, taste, suggesteduse, price , category } = req.body;
     // const imageFile = req.files.image.name;
-  console.log(name);
+//   console.log(name);
     let existing;
   
     const id = req.params.id;
@@ -329,6 +329,29 @@ router.post('/edit-product/:id', async function (req, res) {
     //     });
     // }
     res.redirect('/admin/products');
+});
+
+
+// delete product 
+router.get('/delete-product/:id', async function (req, res) {
+
+    var id = req.params.id;
+    var path = 'public/product_images/' + id;
+
+    fs.remove(path, async function (err) {
+        if (err) {
+            console.log(err);
+        } else {
+
+            await Product.findById(id,   function (err, existing){
+                existing.remove();
+            });
+            
+            req.flash('success', 'Product deleted!');
+            res.redirect('/admin/products');
+        }
+    });
+
 });
 
 
