@@ -19,7 +19,7 @@
         <% products.forEach(function(product){ %>
         <tr>
             <td><%= product.name %></td>
-            <td>$<%= parseFloat(product.price).toFixed(2) %></td>
+            <td>Rs.<%= parseFloat(product.price).toFixed(2) %> per kg</td>
             <td><%= product.category %></td>
             <td>
                 <% if (product.image == "") { %>

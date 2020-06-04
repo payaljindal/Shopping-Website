@@ -18,7 +18,8 @@ const mongostore = require('connect-mongo')(session);
 const usersRoutes = require('./routes/user-routes');
 const productRoutes = require('./routes/product-routes');
 const cartRoutes = require('./routes/cart-routes');
-const adminRoutes = require('./routes/admin-routes')
+const adminRoutes = require('./routes/admin-routes');
+const basicRoutes = require('./routes/basic-routes')
 
 // session middle ware
 app.use(session({
@@ -54,6 +55,9 @@ app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res);
   next();
 })
+
+// basic routes 
+app.use('/' , basicRoutes);
 
 //admin routes
 app.use('/admin/products',adminRoutes);
