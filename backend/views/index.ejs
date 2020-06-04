@@ -1,3 +1,47 @@
 <%- include ('_layouts/header') -%>
 
-<h1> hii there </h1>
+<% if (count > 0) { %>
+    <table class="table table-striped alignmiddle">
+        <!-- <thead>
+            <tr class="home">
+                <th>Product</th>
+                <th>Price</th>
+                <th>Category</th>
+                <th>Product Image</th>
+                <th>Edit</th>
+                <th>Delete</th>
+            </tr>
+        </thead> -->
+        <tbody>
+            <% products.forEach(function(product){ %>
+            <!-- <tr>
+                <td><%= product.name %></td>
+                <td>$<%= parseFloat(product.price).toFixed(2) %></td>
+                <td><%= product.category %></td>
+                <td>
+                    <% if (product.image == "") { %>
+                    <img id="noimage" src="/images/noimage.PNG">
+                    <% } else {%>
+                    <img id="noimage" src="/product_images/<%= product._id %>/<%= product.image %>">
+                    <% }%>
+                </td>
+                <td><a href="/admin/products/edit-product/<%= product._id %>">Edit</a></td>
+                <td><a class="confirmDeletion" href="/admin/products/delete-product/<%= product._id %>">Delete</a></td>
+            </tr> -->
+            
+            <div class="card" style="width: 18rem;">
+                <img class="card-img-top" src="..." alt="<%= product.name %>">
+                <div class="card-body">
+                  <h5 class="card-title"><%= product.name %></h5>
+                  <p class="card-text">Category : <%= product.category %></p>
+                  <a href="/details/<%= product._id %>" class="btn btn-primary">Get Details</a>
+                </div>
+              </div>
+<br> <br>
+
+            <% }); %>
+        </tbody>
+    </table>
+    <% } else {%>
+    <h3 class="text-center">There are no products.</h3>
+    <% }%>
