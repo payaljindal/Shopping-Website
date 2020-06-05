@@ -1,5 +1,13 @@
 <%- include ('_layouts/header') -%>
 
+<h1>Search by category</h1>
+<form method="post" action="/products/category" >
+    <div class="form-group">
+    <input name="category" class="form-control" ></input>
+    </div>
+    <button> Search</button>
+</form>
+
 <% if (count > 0) { %>
     <table class="table table-striped alignmiddle">
         <!-- <thead>
@@ -45,3 +53,7 @@
     <% } else {%>
     <h3 class="text-center">There are no products.</h3>
     <% }%>
+
+
+
+

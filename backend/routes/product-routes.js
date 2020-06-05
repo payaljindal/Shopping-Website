@@ -9,4 +9,6 @@ router.get('/all',productControllers.getProducts);
 
 router.get('/details/:id',productControllers.details);
 
+router.post('/category',productControllers.getProductsByCategory);
+
 module.exports = router;

@@ -70,5 +70,46 @@ const details = async (req,res,next) => {
 
 
 
+
+const getProductsByCategory = async (req,res,next) => {
+ 
+    const {category} = req.body ;
+
+
+     // let products;
+  // try{
+  //   products = Products.find({category : category});
+  // }catch{
+  //   return next(new HttpError('Could not get products list. Please try again later')
+  //     );
+  // }
+
+  var count;
+
+  await Product.countDocuments(function (err, c) {
+      count = c;
+  });
+
+  Product.find({category : category}, function (err, products) {
+      res.render('product_category', {
+        title: 'Categoy',
+        category : category,
+          products: products,
+          count: count
+      });
+  });
+   
+      // res.render('product_category', {
+      //   title: 'Category',
+      //   category : category,
+      //   products : products
+      // });
+
+
+};
+
+
+
 exports.getProducts = getProducts;
 exports.details = details;
+exports.getProductsByCategory = getProductsByCategory;
