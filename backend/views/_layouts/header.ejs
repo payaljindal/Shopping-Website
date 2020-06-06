@@ -33,6 +33,17 @@
             <li><a href="/contact">Contact</a></li>
             <li><a href="/products/all">All products</a></li>
           </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li>
+                <a href="/cart/checkout">My Cart (
+                    <% if (typeof cart !== "undefined") { %>
+                    <%= cart.length %>
+                    <% } else {%>
+                    0
+                    <% } %>
+                )</a>
+            </li>
+            </ul>
         </div><!--/.nav-collapse -->
       </div>
     </nav>

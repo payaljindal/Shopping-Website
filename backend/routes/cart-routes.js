@@ -7,7 +7,7 @@ const cartControllers = require('../controllers/cart-controllers');
 router.get('/',cartControllers.getCart);
 
 // add to cart
-router.get('/addtocart/:pid', cartControllers.addtocart);
+router.get('/add/:id', cartControllers.addtocart);
 
 // remove from cart
 router.patch('/removefromcart', cartControllers.removefromcart);

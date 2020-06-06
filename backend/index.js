@@ -24,10 +24,10 @@ const basicRoutes = require('./routes/basic-routes')
 // session middle ware
 app.use(session({
   secret : 'mysupersecret',
-  resave : false,
-  saveUninitialized : false,
+  resave : true,
+  saveUninitialized : true,
   store : new mongostore({ mongooseConnection : mongoose.connection }),
-  cookie : { maxAge : 180 * 60 * 1000 }
+  // cookie : { maxAge : 180 * 60 * 1000 }
 }));
 
 // view engine setup
@@ -47,14 +47,18 @@ app.use(bodyParser.urlencoded({ extended : false }));
 app.use(bodyParser.json());
 
 
-
-
 // express messages
 app.use(require('connect-flash')());
 app.use(function (req, res, next) {
   res.locals.messages = require('express-messages')(req, res);
   next();
 })
+
+app.get('*', function(req,res,next) {
+  res.locals.cart = req.session.cart;
+  next();
+});
+
 
 // basic routes 
 app.use('/' , basicRoutes);
@@ -69,7 +73,7 @@ app.use('/api/users', usersRoutes);
 app.use('/products' , productRoutes);
 
 // cart routes
-app.use('/api/cart', cartRoutes);
+app.use('/cart', cartRoutes);
 
 
 

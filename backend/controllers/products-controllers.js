@@ -4,13 +4,6 @@ const HttpError = require('../models/http-error');
 
 
 const getProducts = async (req,res,next) => {
-    // let products;
-  // try{
-  //   products = Products.find({});
-  // }catch{
-  //   return next(new HttpError('Could not get products list. Please try again later')
-  //     );
-  // }
 
   var count;
 
@@ -47,6 +40,7 @@ const details = async (req,res,next) => {
               res.redirect('/');
           } else {
                       res.render('details', {
+                        title: 'Shopping Cart',
                           name : p.name,
                           errors: errors,
                           flavour : p.flavour,
@@ -60,12 +54,6 @@ const details = async (req,res,next) => {
                   }    
           
       });
-
-  // res.render('details', {
-  //   title: 'Shopping Cart',
-      
-  // });
-
 };
 
 
@@ -74,15 +62,6 @@ const details = async (req,res,next) => {
 const getProductsByCategory = async (req,res,next) => {
  
     const {category} = req.body ;
-
-
-     // let products;
-  // try{
-  //   products = Products.find({category : category});
-  // }catch{
-  //   return next(new HttpError('Could not get products list. Please try again later')
-  //     );
-  // }
 
   var count;
 
@@ -98,14 +77,6 @@ const getProductsByCategory = async (req,res,next) => {
           count: count
       });
   });
-   
-      // res.render('product_category', {
-      //   title: 'Category',
-      //   category : category,
-      //   products : products
-      // });
-
-
 };
 
 
