@@ -9,29 +9,7 @@ const getCart = async (req,res,next) => {
 
 const addtocart = async (req,res,next) => {
 	
-// 	var cart = new Cart(req.session.cart ? req.session.cart : {});
-
-// 	let existing;
-
-//   const pid = req.params.pid;
-
-//   console.log(pid);
-//   try {
-//     existing = await Products.findById(pid);
-//   } catch (err) {
-//     return next(new HttpError('Cannot update this product as it does not exist', 422));
-//   }
-//   if (existing) {
-//         cart.add(existing, existing.id);
-//   		req.session.cart = cart;
-// 	  	console.log(req.session.cart);
-//     }
-// res.json({
-// 	message: "check console if cart is their or not"
-// })
-
-// var slug = req.params.product;
-const id = req.params.id;
+    const id = req.params.id;
 
     Product.findOne({ _id : id}, function (err, p) {
         if (err)
@@ -79,10 +57,13 @@ const removefromcart = async (req,res,next) => {
 
 };
 
-const checkout = async (req,res,next) => {
+const checkout = (req,res,next) => {
 
-  // will be reached only if data is verified by stripe
-  // not yet written the stripe code for frontend
+
+        res.render('checkout', {
+            title: 'Checkout',
+            cart: req.session.cart
+        });
 
 
 };
