@@ -40,7 +40,7 @@ const id = req.params.id;
         if (typeof req.session.cart == "undefined") {
             req.session.cart = [];
             req.session.cart.push({
-                title: id,
+                title: p.name,
                 qty: 1,
                 price: parseFloat(p.price).toFixed(2),
                 image: '/product_images/' + p._id + '/' + p.image
@@ -50,7 +50,7 @@ const id = req.params.id;
             var newItem = true;
 
             for (var i = 0; i < cart.length; i++) {
-                if (cart[i].title == id) {
+                if (cart[i].title == p.name) {
                     cart[i].qty++;
                     newItem = false;
                     break;
@@ -67,7 +67,8 @@ const id = req.params.id;
             }
         }
 
-//        console.log(req.session.cart);
+       console.log(req.session.cart);
+       console.log(req.session.cart.length);
         req.flash('success', 'Product added!');
         res.redirect('back');
     });

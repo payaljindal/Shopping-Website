@@ -1,9 +1,10 @@
-products of given category
+<%- include ('_layouts/header') -%>
 
-<%= category %>
+products of given category
+<h1><%= category %></h1>
+
 <br><br>
 
-<tbody>
     <% products.forEach(function(product){ %>
     <!-- <tr>
         <td><%= product.name %></td>
