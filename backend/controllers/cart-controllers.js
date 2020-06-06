@@ -3,10 +3,6 @@ const Cart = require('../models/cart-model');
 const Product = require('../models/product-model');
 const HttpError = require('../models/http-error');
 
-const getCart = async (req,res,next) => {
-
-};
-
 const addtocart = async (req,res,next) => {
 	
     const id = req.params.id;
@@ -53,44 +49,65 @@ const addtocart = async (req,res,next) => {
 
 };
 
-const removefromcart = async (req,res,next) => {
 
-};
 
 const checkout = (req,res,next) => {
 
-
+    if (req.session.cart && req.session.cart.length == 0) {
+        delete req.session.cart;
+        res.redirect('/cart/checkout');
+    } else {
         res.render('checkout', {
             title: 'Checkout',
             cart: req.session.cart
         });
-
+    }
 
 };
 
-const reducebyone = async(req,res,next) => {
-    var cart = new Cart(req.session.cart ? req.session.cart : {});
-    const pid = req.params.id;
+const update = async(req,res,next) => {
+    var title = req.params.title;
+    var cart = req.session.cart;
+    var action = req.query.action;
 
-    cart.rereducebyone(pid);
-    req.session.cart = cart;
+    for (var i = 0; i < cart.length; i++) {
+        if (cart[i].title == title) {
+            switch (action) {
+                case "add":
+                    cart[i].qty++;
+                    break;
+                case "remove":
+                    cart[i].qty--;
+                    if (cart[i].qty < 1)
+                        cart.splice(i, 1);
+                    break;
+                case "clear":
+                    cart.splice(i, 1);
+                    if (cart.length == 0)
+                        delete req.session.cart;
+                    break;
+                default:
+                    console.log('update problem');
+                    break;
+            }
+            break;
+        }
+    }
 
-    // will add later
-    // res.redirect('/')
+    req.flash('success', 'Cart updated!');
+    res.redirect('/cart/checkout');
 }
 
-const reduceitem = async(req,res,next) => {
-    var cart = new Cart(req.session.cart ? req.session.cart : {});
-    const pid = req.params.id;
 
-    cart.removeItem(pid);
-    req.session.cart = cart;
-
-    // will add later
-    // res.redirect('/')
+const clear = (req,res,next) =>{
+    
+    delete req.session.cart;
+    req.flash('success', 'Cart cleared!');
+    res.redirect('/cart/checkout');
 }
 
-exports.getCart = getCart;
+
+exports.update = update;
 exports.addtocart = addtocart;
-exports.removefromcart = removefromcart;
 exports.checkout = checkout;
+exports.clear = clear;
