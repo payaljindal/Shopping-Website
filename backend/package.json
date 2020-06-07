@@ -27,6 +27,7 @@
     "mongoose-unique-validator": "^2.0.3",
     "nodemon": "^2.0.4",
     "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
     "path": "^0.12.7",
     "resize-img": "^2.0.0",
     "stripe": "^8.55.0"

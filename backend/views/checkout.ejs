@@ -1,6 +1,5 @@
 <%- include ('_layouts/header') -%>
 
-
 <% if (typeof cart !== "undefined") { %>
     <h1 class="page-title">My Cart</h1>
     <br><br>
@@ -29,7 +28,7 @@
                 <a href="/cart/update/<%= product.title %>?action=remove">-</a>&nbsp;
                 <a href="/cart/update/<%= product.title %>?action=clear">Clear</a>&nbsp;
             </td>
-            <td>$<%= sub %></td>
+            <td>Rs.<%= sub %></td>
         </tr>
         <% }); %>
         <tr>
@@ -64,15 +63,12 @@
     <% } %>
 
     <script>
-
     $(function() {
    
         $('a.clearcart').on('click', function () {
             if (!confirm('Are you sure to clear cart?'))
                 return false;
-        });
-        
-            
+        });   
     });
         
     </script>

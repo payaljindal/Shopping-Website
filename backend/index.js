@@ -4,6 +4,7 @@ const path = require('path');
 const app = express();
 const bodyParser = require('body-parser');
 const mongoose = require('mongoose');
+const passport = require('passport');
 
 var expressValidator = require('express-validator');
 
@@ -24,8 +25,8 @@ const basicRoutes = require('./routes/basic-routes')
 // session middle ware
 app.use(session({
   secret : 'mysupersecret',
-  resave : true,
-  saveUninitialized : true,
+  resave : false,
+  saveUninitialized : false,
   store : new mongostore({ mongooseConnection : mongoose.connection }),
   // cookie : { maxAge : 180 * 60 * 1000 }
 }));
@@ -52,8 +53,15 @@ app.use(function (req, res, next) {
   next();
 })
 
+// Passport Config
+require('./config/passport')(passport);
+// Passport Middleware
+app.use(passport.initialize());
+app.use(passport.session());
+
 app.get('*', function(req,res,next) {
   res.locals.cart = req.session.cart;
+  res.locals.user = req.user || null;
   next();
 });
 
@@ -65,7 +73,7 @@ app.use('/' , basicRoutes);
 app.use('/admin/products',adminRoutes);
 
  // user routes 
-app.use('/api/users', usersRoutes);
+app.use('/users', usersRoutes);
 
 // product routes 
 app.use('/products' , productRoutes);

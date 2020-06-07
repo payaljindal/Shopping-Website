@@ -1,16 +1,28 @@
 const express = require('express');
+const router = express.Router();
 const userControllers = require('../controllers/users-controllers');
 const { check } = require('express-validator');
 const passport = require('passport');
+var bcrypt = require('bcryptjs');
 
+// Get Users model
+var User = require('../models/user-model');
 
-const router = express.Router();
+// get register
+router.get('/register', function (req, res) {
+
+    res.render('register', {
+        title: 'Register',
+    });
+
+});
+
 
 // route to display all users for admin only
 router.get('/',userControllers.getUsers);
 
 // route to signup
-router.post('/signup',
+router.post('/register',
 	[
     check('name').not().isEmpty(),
     check('email').normalizeEmail().isEmail().not().isEmpty(),
