@@ -30,6 +30,17 @@ router.post('/register',
   ],
   userControllers.signup);
 
+// get route for login 
+router.get('/login', function (req, res) {
+
+    if (res.locals.user) res.redirect('/');
+    
+    res.render('login', {
+        title: 'Log in'
+    });
+
+});
+
 // route to login
 router.post('/login',userControllers.login);
 
