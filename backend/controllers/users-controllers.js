@@ -6,6 +6,7 @@ const { validationResult } = require('express-validator');
 const Order = require('../models/order-model.js')
 const Cart = require('../models/cart-model.js')
 const { check } = require('express-validator');
+const passport = require('passport');
 
 const getUsers = async (req,res,next) => {
 
@@ -79,7 +80,7 @@ const signup = async (req,res,next) => {
                           } else {
                               req.flash('success', 'You are now registered!');
                               console.log("succes");
-                              res.redirect('/users/register');
+                              res.redirect('/users/login');
                           }
                       });
                   });
@@ -154,52 +155,62 @@ const signup = async (req,res,next) => {
 
 const login = async (req,res,next) => {
 
-	 const { email,password } = req.body;
+	//  const { email,password } = req.body;
 
   
-  let existingUser;
-  try {
-    existingUser = await Users.findOne({ email:email });
-  } catch (error) {
-    return next(new HttpError('Something went wrong!Please Try Again', 500));
-  }
+  // let existingUser;
+  // try {
+  //   existingUser = await Users.findOne({ email:email });
+  // } catch (error) {
+  //   return next(new HttpError('Something went wrong!Please Try Again', 500));
+  // }
 
-  if (!existingUser) {
-    return next(
-      new HttpError(
-        'Could not identify user, credentials seem to be wrong.',
-        401,
-      ),
-    );
-  }
+  // if (!existingUser) {
+  //   return next(
+  //     new HttpError(
+  //       'Could not identify user, credentials seem to be wrong.',
+  //       401,
+  //     ),
+  //   );
+  // }
 
-  let isValidPassword = false;
-  try {
-    isValidPassword = await bcrypt.compare(password, existingUser.password);
-  } catch (err) {
-    const error = new HttpError(
-      'Invalid credentials passed. Please, try again',
-      500,
-    );
-    return next(error);
-  }
+  // let isValidPassword = false;
+  // try {
+  //   isValidPassword = await bcrypt.compare(password, existingUser.password);
+  // } catch (err) {
+  //   const error = new HttpError(
+  //     'Invalid credentials passed. Please, try again',
+  //     500,
+  //   );
+  //   return next(error);
+  // }
 
-  if (!isValidPassword) {
-    const error = new HttpError(
-      'Invalid credentials, could not log you in.',
-      401,
-    );
-    return next(error);
-  }
+  // if (!isValidPassword) {
+  //   const error = new HttpError(
+  //     'Invalid credentials, could not log you in.',
+  //     401,
+  //   );
+  //   return next(error);
+  // }
 
-  res.json({
-  	message : "Successfully logged in!",
-    userId: existingUser.id,
-    email: existingUser.email,
-    name: existingUser.name
-  });
+  // res.json({
+  // 	message : "Successfully logged in!",
+  //   userId: existingUser.id,
+  //   email: existingUser.email,
+  //   name: existingUser.name
+  // });
+
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/users/login',
+    failureFlash: true
+})(req, res, next);
+  
 
 }
+
+
+
 const changepassword = async (req,res,next) => {
 
  const errors = validationResult(req);
@@ -265,7 +276,9 @@ const changepassword = async (req,res,next) => {
 
 const logout = (req,res,next) => {
   req.logout();
-  res.redirect('/signup');
+  req.flash('success','Logged out!');
+  console.log('logout');
+  res.redirect('/users/login');
 
 }
 

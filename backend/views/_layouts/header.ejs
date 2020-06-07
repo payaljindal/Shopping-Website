@@ -41,12 +41,16 @@
                     <% } %>
                 )</a>
             </li>
-            <li>
-              <a href="/users/register">Register</a>
-            </li>
-            <li>
-              <a href="/users/login">Log in</a>
-            </li>
+            <% if (user) { %>
+              <li><a href="/users/logout">Hi, <%= user.username %> ( logout )</a></li>
+              <% } else {%>
+              <li><a href="/users/register">Register</a></li>
+              <li><a href="/users/login">Log in</a></li>
+              <% } %>
+              
+              <% if (user && user.admin == 1) { %>
+                <li><a href="/admin/products">Admin Area</a></li>
+                <% }%>
             </ul>
         </div><!--/.nav-collapse -->
       </div>

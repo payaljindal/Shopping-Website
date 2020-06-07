@@ -6,7 +6,8 @@ const HttpError = require('../models/http-error');
 const getProducts = async (req,res,next) => {
 
   var count;
-
+  var loggedIn = (req.isAuthenticated()) ? true : false;
+  // console.log(loggedIn);
   await Product.countDocuments(function (err, c) {
       count = c;
   });
@@ -15,7 +16,8 @@ const getProducts = async (req,res,next) => {
       res.render('index', {
         title: 'Shopping Cart',
           products: products,
-          count: count
+          count: count,
+          loggedIn: loggedIn,
       });
   });
 
@@ -26,7 +28,8 @@ const details = async (req,res,next) => {
 
   const id = req.params.id;
 
-
+  var loggedIn = (req.isAuthenticated()) ? true : false;
+  // console.log(loggedIn);
   var errors;
 
   if (req.session.errors)
@@ -49,7 +52,8 @@ const details = async (req,res,next) => {
                           category: p.category,
                           price: parseFloat(p.price).toFixed(2),
                           image: p.image,
-                          id: p._id
+                          id: p._id,
+                          loggedIn: loggedIn,
                       });
                   }    
           
@@ -62,8 +66,12 @@ const details = async (req,res,next) => {
 const getProductsByCategory = async (req,res,next) => {
  
     const {category} = req.body ;
+    var loggedIn = (req.isAuthenticated()) ? true : false;
 
   var count;
+
+
+  let user = req.user;
 
   await Product.countDocuments(function (err, c) {
       count = c;
@@ -74,7 +82,9 @@ const getProductsByCategory = async (req,res,next) => {
         title: 'Categoy',
         category : category,
           products: products,
-          count: count
+          count: count,
+          loggedIn: loggedIn,
+          user:user,
       });
   });
 };

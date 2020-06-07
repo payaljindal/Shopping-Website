@@ -21,4 +21,8 @@ Rs. <%- price %>
 
 <!-- <a href="/products/all" class="btn btn-primary">Go back</a> -->
 
-<p><a href="/cart/add/<%= id %>">Add to cart</a></p>
+<% if (loggedIn) { %>
+    <p><a href="/cart/add/<%= id %>">Add to cart</a></p>
+    <% } else {%>
+        <a href="/users/login" class="btn btn-danger" >Login to purchase!</a>
+    <% } %> 
