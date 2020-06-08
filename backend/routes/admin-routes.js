@@ -3,8 +3,8 @@ var router = express.Router();
 var mkdirp = require('mkdirp');
 var fs = require('fs-extra');
 var resizeImg = require('resize-img');
-// var auth = require('../config/auth');
-// var isAdmin = auth.isAdmin;
+var auth = require('../config/auth');
+var isAdmin = auth.isAdmin;
 const Product = require('../models/product-model');
 
 
@@ -12,7 +12,7 @@ const Product = require('../models/product-model');
 
 
 // to display all products to admin
-router.get('/', async function (req, res) {
+router.get('/',isAdmin, async function (req, res) {
 
   // let products;
   // try{
@@ -37,7 +37,7 @@ router.get('/', async function (req, res) {
 });
 
 // get route to add product
-router.get('/add-product', function (req, res) {
+router.get('/add-product',isAdmin, function (req, res) {
 
     var name = "";
     var texture = "";
@@ -62,7 +62,7 @@ router.get('/add-product', function (req, res) {
 
 // post route to add products
 // image is not uploaded
-router.post('/add-product', async function (req, res) {
+router.post('/add-product',isAdmin, async function (req, res) {
 
 
     req.checkBody('name', 'Title must have a value.').notEmpty();
@@ -189,7 +189,7 @@ router.post('/add-product', async function (req, res) {
 
 // get edit page 
 
-router.get('/edit-product/:id', function (req, res) {
+router.get('/edit-product/:id',isAdmin, function (req, res) {
 
     var errors;
 
@@ -219,7 +219,7 @@ router.get('/edit-product/:id', function (req, res) {
         });
 });
 
-router.post('/edit-product/:id', async function (req, res) {
+router.post('/edit-product/:id',isAdmin, async function (req, res) {
 
     // var imageFile = typeof req.files.image !== "undefined" ? req.files.image.name : "";
 
@@ -333,7 +333,7 @@ router.post('/edit-product/:id', async function (req, res) {
 
 
 // delete product 
-router.get('/delete-product/:id', async function (req, res) {
+router.get('/delete-product/:id',isAdmin, async function (req, res) {
 
     var id = req.params.id;
     var path = 'public/product_images/' + id;
