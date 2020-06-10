@@ -1,4 +1,7 @@
 <%- include('../_layouts/admin-header') -%>
+
+<img src="../../public/product_images/q1.PNG" alt="" style="width: 30; height: 30;">
+
 <h2 class="page-title">Products</h2>
 <a href="/admin/products/add-product" class="btn btn-primary">Add a new product</a>
 <br><br>
@@ -22,10 +25,11 @@
             <td>Rs.<%= parseFloat(product.price).toFixed(2) %> per kg</td>
             <td><%= product.category %></td>
             <td>
+               
                 <% if (product.image == "") { %>
                 <img id="noimage" src="/images/noimage.PNG">
                 <% } else {%>
-                <img id="noimage" src="/product_images/<%= product._id %>/<%= product.image %>">
+                <img id="noimage" src="product_images/<%= product._id %>_<%= product.image %>">
                 <% }%>
             </td>
             <td><a href="/admin/products/edit-product/<%= product._id %>">Edit</a></td>

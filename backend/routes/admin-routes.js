@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
-var mkdirp = require('mkdirp');
+const mkdirp = require('mkdirp');
 var fs = require('fs-extra');
 var resizeImg = require('resize-img');
 var auth = require('../config/auth');
 var isAdmin = auth.isAdmin;
 const Product = require('../models/product-model');
-
+const fileupload = require('../middleware/file-upload')
 
 
 
@@ -65,15 +65,17 @@ router.get('/add-product',isAdmin, function (req, res) {
 router.post('/add-product',isAdmin, async function (req, res) {
 
 
-    req.checkBody('name', 'Title must have a value.').notEmpty();
+    // req.checkBody('name', 'Title must have a value.').notEmpty();
       const{ name, flavour, texture, taste, suggesteduse, price , category } = req.body;
   
      const imageFile = req.files.image.name;
-    
+     console.log(imageFile);
+
+    console.log("1");
+
      let existing;
 
     existing = await Product.findOne({ name : name });
- 
 
   if (existing) {
    req.flash('danger', 'Product title exists, choose another.');
@@ -96,37 +98,36 @@ router.post('/add-product',isAdmin, async function (req, res) {
                     if (err)
                         return console.log(err);
 
-                    mkdirp('public/product_images/' + created._id, function (err) {
-                        return console.log(err);
-                    });
-
-                    // mkdirp('public/product_images/' + created._id + '/gallery', function (err) {
-                    //     return console.log(err);
-                    // });
-
-                    // mkdirp('public/product_images/' + created._id + '/gallery/thumbs', function (err) {
-                    //     return console.log(err);
-                    // });
-
                     if (imageFile != "") {
                         var productImage = req.files.image;
-                        var path = 'public/product_images/' + created._id + '/' + imageFile;
+                        var path = 'views/product_images/' + created._id + '_' + imageFile;
 
                         productImage.mv(path, function (err) {
                             return console.log(err);
                         });
                     }
 
+                    });
+                    }
+                     catch (err) {
+                    req.flash('danger', 'some error occured!');
+                    console.log("some error occured");
+                    }
+
+                    var count;
+
+                    await Product.countDocuments(function (err, c) {
+                        count = c;
+                    });
+                
+                    Product.find(function (err, products) {
+                        res.render('admin/products', {
+                            products: products,
+                            count: count
+                        });
+                    });
                     req.flash('success', 'Product added!');
-                    res.redirect('/admin/products');
-                });
-      } catch (err) {
-      req.flash('danger', 'some error occured!');
-      }
-
-
-  req.flash('success', 'Product added!');
-                    res.redirect('/admin/products');
+                    res.redirect('/admin/products',);
 
 });
 

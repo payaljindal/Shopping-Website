@@ -64,7 +64,8 @@ const signup = async (req,res,next) => {
                   email: email,
                   username: username,
                   password: password,
-                  admin: 0
+                  admin: 0,
+                  cart : []
               });
 
               bcrypt.genSalt(10, function (err, salt) {

@@ -4,46 +4,56 @@ const Product = require('../models/product-model');
 const HttpError = require('../models/http-error');
 
 const addtocart = async (req,res,next) => {
-	
+	console.log(req.user);
     const id = req.params.id;
 
     Product.findOne({ _id : id}, function (err, p) {
         if (err)
             console.log(err);
 
-        if (typeof req.session.cart == "undefined") {
-            req.session.cart = [];
-            req.session.cart.push({
+        if (req.user.cart.length == 0) {
+            console.log("if");
+            console.log(req.user.cart);
+            // req.session.cart = [];
+            // req.session.cart.push({
+            //     title: p.name,
+            //     qty: 1,
+            //     price: parseFloat(p.price).toFixed(2)
+            // });
+            console.log("fdxz");
+            req.user.cart.push({
                 title: p.name,
                 qty: 1,
-                price: parseFloat(p.price).toFixed(2),
-                image: '/product_images/' + p._id + '/' + p.image
+                price: parseFloat(p.price).toFixed(2)
             });
+           
         } else {
-            var cart = req.session.cart;
+            console.log("else");
+            console.log(req.user.cart);
             var newItem = true;
-
-            for (var i = 0; i < cart.length; i++) {
-                if (cart[i].title == p.name) {
-                    cart[i].qty++;
+            
+            // updates in this are not saved in database
+            for (var i = 0; i < req.user.cart.length; i++) {
+                if (req.user.cart[i].title == p.name) {
+                    req.user.cart[i].qty++;
                     newItem = false;
                     break;
                 }
             }
 
             if (newItem) {
-                cart.push({
+                req.user.cart.push({
                     title: p.name,
                     qty: 1,
                     price: parseFloat(p.price).toFixed(2),
-                    image: '/product_images/' + p._id + '/' + p.image
                 });
             }
+            
         }
-
-       console.log(req.session.cart);
-       console.log(req.session.cart.length);
+        req.user.save();
+        console.log(req.user.cart);
         req.flash('success', 'Product added!');
+        console.log(req.user);
         res.redirect('back');
     });
 
@@ -52,17 +62,18 @@ const addtocart = async (req,res,next) => {
 
 
 const checkout = (req,res,next) => {
-
+    
+    console.log(req.user.cart);
     if (req.session.cart && req.session.cart.length == 0) {
         delete req.session.cart;
         res.redirect('/cart/checkout');
     } else {
+        
         res.render('checkout', {
             title: 'Checkout',
-            cart: req.session.cart
+            cart: req.user.cart
         });
     }
-
 };
 
 const update = async(req,res,next) => {
@@ -101,7 +112,7 @@ const update = async(req,res,next) => {
 
 const clear = (req,res,next) =>{
     
-    delete req.session.cart;
+    delete req.user.cart;
     req.flash('success', 'Cart cleared!');
     res.redirect('/cart/checkout');
 }
