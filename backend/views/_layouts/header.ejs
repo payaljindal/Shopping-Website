@@ -32,7 +32,10 @@
             <li><a href="/products/all">All products</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
-            <li>
+           
+
+            <% if (user) { %>
+              <li>
                 <a href="/cart/checkout">My Cart (
                     <% if (typeof cart !== "undefined") { %>
                     <%= cart.length %>
@@ -41,6 +44,9 @@
                     <% } %>
                 )</a>
             </li>
+              <% } else {%>
+              <% } %>
+
             <% if (user) { %>
               <li><a href="/users/logout">Hi, <%= user.username %> ( logout )</a></li>
               <% } else {%>

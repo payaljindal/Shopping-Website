@@ -36,6 +36,7 @@ const addtocart = async (req,res,next) => {
             for (var i = 0; i < req.user.cart.length; i++) {
                 if (req.user.cart[i].title == p.name) {
                     req.user.cart[i].qty++;
+                    req.user.save();
                     newItem = false;
                     break;
                 }
@@ -78,14 +79,16 @@ const checkout = (req,res,next) => {
 
 const update = async(req,res,next) => {
     var title = req.params.title;
-    var cart = req.session.cart;
+    var cart = req.user.cart;
     var action = req.query.action;
 
     for (var i = 0; i < cart.length; i++) {
-        if (cart[i].title == title) {
+        if (req.user.cart[i].title == title) {
             switch (action) {
                 case "add":
-                    cart[i].qty++;
+                    req.user.cart[i].qty = req.user.cart[i].qty + 1;
+                    console.log(req.user.cart);
+                    req.user.save();
                     break;
                 case "remove":
                     cart[i].qty--;
@@ -112,7 +115,10 @@ const update = async(req,res,next) => {
 
 const clear = (req,res,next) =>{
     
-    delete req.user.cart;
+    req.user.cart = [];
+    console.log(req.user.cart);
+    req.user.save();
+
     req.flash('success', 'Cart cleared!');
     res.redirect('/cart/checkout');
 }
