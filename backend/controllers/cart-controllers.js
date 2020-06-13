@@ -4,7 +4,6 @@ const Product = require('../models/product-model');
 const HttpError = require('../models/http-error');
 
 const addtocart = async (req,res,next) => {
-	console.log(req.user);
     const id = req.params.id;
 
     Product.findOne({ _id : id}, function (err, p) {
@@ -12,15 +11,6 @@ const addtocart = async (req,res,next) => {
             console.log(err);
 
         if (req.user.cart.length == 0) {
-            console.log("if");
-            console.log(req.user.cart);
-            // req.session.cart = [];
-            // req.session.cart.push({
-            //     title: p.name,
-            //     qty: 1,
-            //     price: parseFloat(p.price).toFixed(2)
-            // });
-            console.log("fdxz");
             req.user.cart.push({
                 title: p.name,
                 qty: 1,
@@ -28,15 +18,11 @@ const addtocart = async (req,res,next) => {
             });
            
         } else {
-            console.log("else");
-            console.log(req.user.cart);
             var newItem = true;
             
-            // updates in this are not saved in database
             for (var i = 0; i < req.user.cart.length; i++) {
                 if (req.user.cart[i].title == p.name) {
                     req.user.cart[i].qty++;
-                    req.user.save();
                     newItem = false;
                     break;
                 }
@@ -52,9 +38,7 @@ const addtocart = async (req,res,next) => {
             
         }
         req.user.save();
-        console.log(req.user.cart);
         req.flash('success', 'Product added!');
-        console.log(req.user);
         res.redirect('back');
     });
 
@@ -89,8 +73,6 @@ const update = async(req,res,next) => {
                 case "add":
                     qty =  req.user.cart[i].qty ; 
                     price = parseFloat(req.user.cart[i].price).toFixed(2);
-                    console.log(qty);
-                    console.log(price);
                     
                     req.user.cart.push({
                         title: title,
@@ -100,12 +82,9 @@ const update = async(req,res,next) => {
                     cart.splice(i, 1);
                     break;
                 case "remove":
-                    console.log("hii");
                     qty =  req.user.cart[i].qty ; 
                     price = parseFloat(req.user.cart[i].price).toFixed(2);
-                    console.log(qty);
-                    console.log(price);
-                    
+
                     if(qty!=1){
                     req.user.cart.push({
                         title: title,
@@ -132,7 +111,8 @@ const update = async(req,res,next) => {
     req.flash('success', 'Cart updated!');
     res.render('checkout', {
         title: 'Checkout',
-        cart: req.user.cart
+        cart: req.user.cart,
+        message : req.flash('Cart updated!')
     });
 }
 

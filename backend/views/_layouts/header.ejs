@@ -37,8 +37,8 @@
             <% if (user) { %>
               <li>
                 <a href="/cart/checkout">My Cart (
-                    <% if (typeof cart !== "undefined") { %>
-                    <%= cart.length %>
+                    <% if (typeof user.cart !== "undefined") { %>
+                    <%= user.cart.length %>
                     <% } else {%>
                     0
                     <% } %>
@@ -61,24 +61,18 @@
         </div><!--/.nav-collapse -->
       </div>
     </nav>
-
-
-      
-      <div class="container">
-        <%- messages('messages', locals) -%>
-        <% console.log(messages) %>
-        hiii
-
-        <% if (typeof(errors) !== "undefined") { %>
+     
+        <div class="container">
+          <%- messages('messages', locals) -%>
+          
+          <% if (typeof(errors) !== "undefined") { %>
             <% errors.forEach(function(error) { %>
               entered
-            <div class="alert alert-danger"></div>
+            <div class="alert alert-danger">
                 yes!<%= error.msg %>
             </div>
             <% }); %>
         <% }%>
-     
-   
       </div><!-- /.container -->
 
 
