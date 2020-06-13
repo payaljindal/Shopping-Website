@@ -1,9 +1,12 @@
 const express = require('express');
 const router = express.Router();
 const userControllers = require('../controllers/users-controllers');
-const { check } = require('express-validator');
+const { check, checkBody } = require('express-validator');
 const passport = require('passport');
 var bcrypt = require('bcryptjs');
+
+
+
 
 // Get Users model
 var User = require('../models/user-model');
@@ -23,11 +26,6 @@ router.get('/',userControllers.getUsers);
 
 // route to signup
 router.post('/register',
-	[
-    check('name').not().isEmpty(),
-    check('email').normalizeEmail().isEmail().not().isEmpty(),
-    check('password').isLength({ min: 6 }),
-  ],
   userControllers.signup);
 
 // get route for login 

@@ -1,3 +1,4 @@
+const express = require('express');
 const mongoose = require('mongoose');
 const User = require('../models/user-model');
 const HttpError = require('../models/http-error');
@@ -5,8 +6,8 @@ const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator');
 const Order = require('../models/order-model.js')
 const Cart = require('../models/cart-model.js')
-const { check } = require('express-validator');
 const passport = require('passport');
+const { checkBody } = require('express-validator');
 
 const getUsers = async (req,res,next) => {
 
@@ -31,19 +32,20 @@ const signup = async (req,res,next) => {
   var password = req.body.password;
   var password2 = req.body.password2;
 
-  // req.checkBody('name', 'Name is required!').notEmpty();
-  // req.checkBody('email', 'Email is required!').isEmail();
-  // req.checkBody('username', 'Username is required!').notEmpty();
-  // req.checkBody('password', 'Password is required!').notEmpty();
-  // req.checkBody('password2', 'Passwords do not match!').equals(password);
+  req.checkBody('name', 'Name is required!').notEmpty();
+  req.checkBody('email', 'Email is required!').isEmail();
+  req.checkBody('username', 'Username is required!').notEmpty();
+  req.checkBody('password', 'Password is required!').notEmpty();
+  req.checkBody('password2', 'Passwords do not match!').equals(password);
   
   const errors = validationResult(req);
-
+  console.log(errors);
   if (!errors.isEmpty()) {
 
 // need to display errors
 
-    // console.log(errors[0].msg);
+    console.log(errors);
+    console.log("fcgv c");
       res.render('register', {
           errors: errors,
           user: null,

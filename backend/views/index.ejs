@@ -1,5 +1,6 @@
 <%- include ('_layouts/header') -%>
-<img src="../public/product_images/5ee0cacb7fe3fd1b108e4a6a_pineapple.jpg" alt="">
+
+<img src="/views/product_images/5ee0e147ef2d8a6774eec027_tiet.jpg" alt="">
 
 <h1>Search by category</h1>
 <form method="post" action="/products/category" >
@@ -38,7 +39,7 @@
                 <td><a class="confirmDeletion" href="/admin/products/delete-product/<%= product._id %>">Delete</a></td>
             </tr> -->
             <div class="card" style="width: 18rem;">
-                <img class="card-img-top" src="../public/product_images/5ee0cacb7fe3fd1b108e4a6a_pineapple.jpg" alt="<%= product.name %>">
+                <img class="card-img-top" src="product_images/5ee0cacb7fe3fd1b108e4a6a_pineapple.jpg" alt="<%= product.name %>">
                 <div class="card-body">
                   <h5 class="card-title"><%= product.name %></h5>
                   <p class="card-text">Category : <%= product.category %></p>

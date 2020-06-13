@@ -46,12 +46,14 @@ app.use(bodyParser.urlencoded({ extended : false }));
 app.use(bodyParser.json());
 
 
-// express messages
+// Express Messages middleware
 app.use(require('connect-flash')());
 app.use(function (req, res, next) {
-  res.locals.messages = require('express-messages')(req, res);
-  next();
-})
+    res.locals.messages = require('express-messages')(req, res);
+    next();
+});
+
+
 
 // Passport Config
 require('./config/passport')(passport);
