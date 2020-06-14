@@ -1,7 +1,5 @@
 <%- include('../_layouts/admin-header') -%>
 
-<img src="/images/tiet.jpg" alt="image" style="width: 30; height: 30;">
-
 <h2 class="page-title">Products</h2>
 <a href="/admin/products/add-product" class="btn btn-primary">Add a new product</a>
 <br><br>
@@ -29,7 +27,7 @@
                 <% if (product.image == "") { %>
                 <img id="noimage" src="/images/noimage.PNG">
                 <% } else {%>
-                <img id="noimage" src="/product_images/<%= product._id %>_<%= product.image %>">
+                <img id="noimage" src="/product_images/<%= product._id %>_<%= product.image %>" width="50" height="50">
                 <% }%>
             </td>
             <td><a href="/admin/products/edit-product/<%= product._id %>">Edit</a></td>

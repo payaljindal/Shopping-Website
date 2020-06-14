@@ -22,13 +22,13 @@ products of given category
     </tr> -->
     
     <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="..." alt="<%= product.name %>">
+        <img class="card-img-top" src="/product_images/<%= product._id %>_<%= product.image %>" alt="<%= product.name %>" width="200" height="200">
         <div class="card-body">
           <h5 class="card-title"><%= product.name %></h5>
           <!-- <p class="card-text">Category : <%= product.category %></p> -->
           <a href="/products/details/<%= product._id %>" class="btn btn-primary">Get Details</a>
             <% if (loggedIn) { %>
-            <p><a href="/cart/add/<%= product._id %>">Add to cart</a></p>
+                <p><a href="/cart/add/<%= product._id %>">Add to cart</a></p>
             <% } else {%>
             <a href="/users/login" class="btn btn-danger" >Login to purchase!</a>
             <% } %> 
