@@ -100,7 +100,7 @@ router.post('/add-product',isAdmin, async function (req, res) {
 
                     if (imageFile != "") {
                         var productImage = req.files.image;
-                        var path = 'views/product_images/' + created._id + '_' + imageFile;
+                        var path = 'public/product_images/' + created._id + '_' + imageFile;
 
                         productImage.mv(path, function (err) {
                             return console.log(err);
@@ -337,6 +337,7 @@ router.post('/edit-product/:id',isAdmin, async function (req, res) {
 router.get('/delete-product/:id',isAdmin, async function (req, res) {
 
     var id = req.params.id;
+
     var path = 'public/product_images/' + id;
 
     fs.remove(path, async function (err) {
