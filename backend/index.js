@@ -106,5 +106,5 @@ mongoose
     'mongodb+srv://Payal:Shipshop@cluster0-sw3qo.mongodb.net/test?retryWrites=true&w=majority',
     { useCreateIndex: true,useUnifiedTopology: true, useNewUrlParser: true },
   )
-  .then(() => app.listen(5000))
+  .then(() => app.listen(5000, console.log("Your server is up man.....")))
   .catch((err) => console.log(err));
