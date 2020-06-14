@@ -69,9 +69,9 @@ router.post('/add-product',isAdmin, async function (req, res) {
       const{ name, flavour, texture, taste, suggesteduse, price , category } = req.body;
   
      const imageFile = req.files.image.name;
-     console.log(imageFile);
+    //  console.log(imageFile);
 
-    console.log("1");
+    // console.log("1");
 
      let existing;
 
@@ -338,24 +338,21 @@ router.get('/delete-product/:id',isAdmin, async function (req, res) {
 
     var id = req.params.id;
 
-    var path = 'public/product_images/' + id;
-
-    fs.remove(path, async function (err) {
-        if (err) {
-            console.log(err);
-        } else {
-
             await Product.findById(id,   function (err, existing){
-                existing.remove();
+                var path = 'public/product_images/' + id + '_' + existing.image ;
+                    fs.remove(path, async function (err) {
+                        if (err) {
+                            console.log(err);
+                        } else {
+                            existing.remove();
+                        }
             });
             
             req.flash('success', 'Product deleted!');
             res.redirect('/admin/products');
-        }
     });
 
 });
-
 
 
 

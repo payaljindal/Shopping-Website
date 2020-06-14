@@ -29,7 +29,6 @@ const details = async (req,res,next) => {
   const id = req.params.id;
 
   var loggedIn = (req.isAuthenticated()) ? true : false;
-  // console.log(loggedIn);
   var errors;
 
   if (req.session.errors)
