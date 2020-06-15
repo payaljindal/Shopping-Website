@@ -94,17 +94,17 @@ router.post('/add-product',isAdmin, async function (req, res) {
 
     try {
       await created.save(function (err) {
-                    if (err)
-                        return console.log(err);
-
-                    if (imageFile != "") {
-                        var productImage = req.files.image;
-                        var path = 'public/product_images/' + created._id + '_' + imageFile;
-
-                        productImage.mv(path, function (err) {
+                        if (err)
                             return console.log(err);
-                        });
-                    }
+
+                        if (imageFile != "") {
+                            var productImage = req.files.image;
+                            var path = 'public/product_images/' + created._id + '_' + imageFile;
+
+                            productImage.mv(path, function (err) {
+                                return console.log(err);
+                            });
+                        }
 
                     });
                     }
@@ -114,7 +114,6 @@ router.post('/add-product',isAdmin, async function (req, res) {
                     }
 
                     var count;
-
                     await Product.countDocuments(function (err, c) {
                         count = c;
                     });
@@ -127,64 +126,7 @@ router.post('/add-product',isAdmin, async function (req, res) {
                     });
                     req.flash('success', 'Product added!');
                     res.redirect('/admin/products',);
-
 });
-
-
-
-// router.post('/create',)
-
-
-// const createProduct = async (req,res,next) => {
-//   const{ name, flavour, texture, taste, suggesteduse, price , category } = req.body;
-  
-  
-//   let existing;
-
-//   try{
-//     existing = await Products.findOne({ name : name });
-//   }catch {
-//     const error = new HttpError('Some server error occured. Please try again later.')
-//   }
-
-//   if (existing) {
-//     const error = new HttpError(
-//       'Product with this name exists already.',
-//       422,
-//     );
-//     return next(error);
-//     }
-
-    
-//     const created = new Products({
-//       imagepath : 'https://pmcdeadline2.files.wordpress.com/2014/02/minecraft__140227211000.jpg',
-//       name,
-//       flavour,
-//       texture,
-//       taste,
-//       suggesteduse,
-//       price,
-//       category
-//     });
-
-//     try {
-//       await created.save();
-//       } catch (err) {
-//       const error = new HttpError(
-//       'Creation failed, please try again later.',
-//       500,
-//       );
-//       return next(error);
-//       }
-
-
-//   res.status(201).json({
-//     message : "Successfully created new product",
-//     userId: created.id,
-    
-//   });
-  
-// };
 
 
 // get edit page 
@@ -229,13 +171,9 @@ router.post('/edit-product/:id',isAdmin, async function (req, res) {
     // req.checkBody('image', 'You must upload an image').isImage(imageFile);
 
     const{ name, flavour, texture, taste, suggesteduse, price , category } = req.body;
-    // const imageFile = req.files.image.name;
-//   console.log(name);
     let existing;
   
     const id = req.params.id;
-  
-    // console.log(pid);
 
     await Product.findById(id, function (err, existing) {
                         if (err)
@@ -261,6 +199,7 @@ router.post('/edit-product/:id',isAdmin, async function (req, res) {
           //     existing.image = imageFile;
     }
     try {
+        req.flash('success', 'Product edited successfully!');
        existing.save();
     } catch (err) {
       console.log(err);
