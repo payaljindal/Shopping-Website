@@ -24,7 +24,6 @@ const getUsers = async (req,res,next) => {
 }
 
 const signup = async (req,res,next) => {
-  console.log("reached");
 
   var name = req.body.name;
   var email = req.body.email;
@@ -32,33 +31,33 @@ const signup = async (req,res,next) => {
   var password = req.body.password;
   var password2 = req.body.password2;
 
-  req.checkBody('name', 'Name is required!').notEmpty();
-  req.checkBody('email', 'Email is required!').isEmail();
-  req.checkBody('username', 'Username is required!').notEmpty();
-  req.checkBody('password', 'Password is required!').notEmpty();
-  req.checkBody('password2', 'Passwords do not match!').equals(password);
+  // req.checkBody('name', 'Name is required!').notEmpty();
+  // req.checkBody('email', 'Email is required!').isEmail();
+  // req.checkBody('username', 'Username is required!').notEmpty();
+  // req.checkBody('password', 'Password is required!').notEmpty();
+  // req.checkBody('password2', 'Passwords do not match!').equals(password);
   
-  const errors = validationResult(req);
-  console.log(errors);
-  if (!errors.isEmpty()) {
+  if (name=="" || email=="" || username=="" || password =="" || password2=="") {
 
-// need to display errors
-
-    console.log(errors);
-    // console.log("fcgv c");
+    req.flash('danger', 'All the fields are required');
       res.render('register', {
-          errors: errors,
           user: null,
           title: 'Register'
       });
-  } else {
+  }else if(password2 !== password){
+    req.flash('danger', 'Passwords did not match');
+    res.render('register', {
+        user: null,
+        title: 'Register'
+    });
+  }
+   else {
       User.findOne({username: username}, function (err, user) {
           if (err)
               console.log(err);
 
           if (user) {
               req.flash('danger', 'Username exists, choose another!');
-              console.log("exists");
               res.redirect('/users/register');
           } else {
               var user = new User({

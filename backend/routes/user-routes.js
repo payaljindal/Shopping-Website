@@ -1,11 +1,9 @@
 const express = require('express');
 const router = express.Router();
 const userControllers = require('../controllers/users-controllers');
-const { check, checkBody } = require('express-validator');
+const { check } = require('express-validator');
 const passport = require('passport');
 var bcrypt = require('bcryptjs');
-
-
 
 
 // Get Users model
@@ -56,23 +54,11 @@ router.get('/logout', userControllers.logout);
 
 // profile page
 
-router.get('/profile',isLoggedIn,userControllers.profile);
+router.get('/profile',userControllers.profile);
 
 
 // add profile route
 
 
 module.exports = router;
-
-function isLoggedIn(req, res, next){
-
-	// #problem because their is no frontend yet, till then use this.
-	// if(req.isAuthenticated()){
-	// 	return next();
-	// }
-	// res.redirect('/login');
-
-	console.log("in logged in");
-	return next();
-}
 
