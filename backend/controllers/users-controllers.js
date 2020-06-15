@@ -13,7 +13,7 @@ const getUsers = async (req,res,next) => {
 
 	let users;
 	try{
-		users = await Users.find({}, '-Password');
+		users = await User.find({}, '-Password');
 	}catch{
 		return next(new HttpError('Could not get users list. Please try again later')
 			);

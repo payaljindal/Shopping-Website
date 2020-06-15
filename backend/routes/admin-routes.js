@@ -7,7 +7,7 @@ var auth = require('../config/auth');
 var isAdmin = auth.isAdmin;
 const Product = require('../models/product-model');
 const fileupload = require('../middleware/file-upload')
-
+const User = require('../models/user-model');
 
 
 
@@ -61,7 +61,6 @@ router.get('/add-product',isAdmin, function (req, res) {
 });
 
 // post route to add products
-// image is not uploaded
 router.post('/add-product',isAdmin, async function (req, res) {
 
 
@@ -237,8 +236,7 @@ router.post('/edit-product/:id',isAdmin, async function (req, res) {
     const id = req.params.id;
   
     // console.log(pid);
-    
-    
+
     await Product.findById(id, function (err, existing) {
                         if (err)
                             console.log(err);
@@ -344,11 +342,27 @@ router.get('/delete-product/:id',isAdmin, async function (req, res) {
                         if (err) {
                             console.log(err);
                         } else {
+                            let users;
+                        try{
+                            users = await User.find({}, '-Password');
+                        }catch(err){
+                            console.log(err);
+                        }
+                            for(var i = 0; i < users.length; i++){
+                                cart = users[i].cart;
+                                
+                                for(var j = 0; j < cart.length; j++){
+                                    if(cart[j].title === existing.name){
+                                        cart.splice(j, 1);
+                                        users[i].save();
+                                    }
+                                }
+                            }
                             existing.remove();
                         }
             });
             
-            req.flash('success', 'Product deleted!');
+            req.flash('success', 'Product deleted successfully!');
             res.redirect('/admin/products');
     });
 
