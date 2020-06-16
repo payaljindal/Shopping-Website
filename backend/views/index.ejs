@@ -1,6 +1,6 @@
 <%- include ('_layouts/header') -%>
 
-<div class="container">
+
 
 <h1>Search by category</h1>
 <form method="post" action="/products/category" >
@@ -9,36 +9,15 @@
     </div>
     <button> Search</button>
 </form>
+<br>
 
+   
 <% if (count > 0) { %>
-    <table class="table table-striped alignmiddle">
-        <!-- <thead>
-            <tr class="home">
-                <th>Product</th>
-                <th>Price</th>
-                <th>Category</th>
-                <th>Product Image</th>
-                <th>Edit</th>
-                <th>Delete</th>
-            </tr>
-        </thead> -->
-        <tbody>
+    <div class="row">
             <% products.forEach(function(product){ %>
-            <!-- <tr>
-                <td><%= product.name %></td>
-                <td>$<%= parseFloat(product.price).toFixed(2) %></td>
-                <td><%= product.category %></td>
-                <td>
-                    <% if (product.image == "") { %>
-                    <img id="noimage" src="/images/noimage.PNG">
-                    <% } else {%>
-                    <img id="noimage" src="/product_images/<%= product._id %>/<%= product.image %>">
-                    <% }%>
-                </td>
-                <td><a href="/admin/products/edit-product/<%= product._id %>">Edit</a></td>
-                <td><a class="confirmDeletion" href="/admin/products/delete-product/<%= product._id %>">Delete</a></td>
-            </tr> -->
-            <div class="card" style="width: 18rem;">
+                <div class="col m4">
+                    <center>
+            <div class="card" style="width: 25rem;">
                 <img class="card-img-top" src="/product_images/<%= product._id %>_<%= product.image %>" alt="<%= product.name %>" width="200" height="200">
                 <div class="card-body">
                   <h5 class="card-title"><%= product.name %></h5>
@@ -52,15 +31,15 @@
                 
                 </div>
               </div>
-<br> <br>
+            </center>
+              </div>
 
             <% }); %>
-        </tbody>
-    </table>
+      
+</div>
     <% } else {%>
     <h3 class="text-center">There are no products.</h3>
     <% }%>
 
-</div>
 
 
