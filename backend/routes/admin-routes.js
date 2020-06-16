@@ -63,24 +63,27 @@ router.get('/add-product',isAdmin, function (req, res) {
 // post route to add products
 router.post('/add-product',isAdmin, async function (req, res) {
 
+    var error =0;
+    
+      const{ name, flavour, texture, taste, suggesteduse, price , category,image } = req.body;
 
-    // req.checkBody('name', 'Title must have a value.').notEmpty();
-      const{ name, flavour, texture, taste, suggesteduse, price , category } = req.body;
-  
-     const imageFile = req.files.image.name;
-    //  console.log(imageFile);
+      if(name=="" || flavour=="" || texture=="" || taste =="" || suggesteduse=="" || price=="" || category=="" || image==""){
+        req.flash('danger','Missing credentials');
+        res.redirect('/admin/products/add-product');
+        error =1;
+      }
 
-    // console.log("1");
-
+if(error === 0){
      let existing;
-
     existing = await Product.findOne({ name : name });
 
-  if (existing) {
-   req.flash('danger', 'Product title exists, choose another.');
-    }
+  if (existing) { 
 
-    
+    req.flash('danger', 'Product title exists, choose another.');
+    res.redirect('/admin/products/add-product');
+    }
+    else{
+    const imageFile = req.files.image.name;   
     const created = new Product({
       image : imageFile,
       name,
@@ -89,20 +92,22 @@ router.post('/add-product',isAdmin, async function (req, res) {
       taste,
       suggesteduse,
       price,
-      category
+      category,
     });
 
     try {
       await created.save(function (err) {
-                        if (err)
-                            return console.log(err);
-
+                        if (err){
+                            req.flash('danger',err);
+                            console.log("error1");
+                            
+                        }
+                            
                         if (imageFile != "") {
                             var productImage = req.files.image;
                             var path = 'public/product_images/' + created._id + '_' + imageFile;
 
                             productImage.mv(path, function (err) {
-                                return console.log(err);
                             });
                         }
 
@@ -112,20 +117,18 @@ router.post('/add-product',isAdmin, async function (req, res) {
                     req.flash('danger', 'some error occured!');
                     console.log("some error occured");
                     }
-
+                    
                     var count;
                     await Product.countDocuments(function (err, c) {
                         count = c;
                     });
                 
                     Product.find(function (err, products) {
-                        res.render('admin/products', {
-                            products: products,
-                            count: count
-                        });
                     });
                     req.flash('success', 'Product added!');
-                    res.redirect('/admin/products',);
+                    res.redirect('/admin/products');
+                }
+            }
 });
 
 
@@ -145,6 +148,7 @@ router.get('/edit-product/:id',isAdmin, function (req, res) {
                 console.log(err);
                 res.redirect('/admin/products');
             } else {
+                        
                         res.render('admin/edit_product', {
                             name : p.name,
                             errors: errors,
@@ -199,7 +203,7 @@ router.post('/edit-product/:id',isAdmin, async function (req, res) {
           //     existing.image = imageFile;
     }
     try {
-        req.flash('success', 'Product edited successfully!');
+   
        existing.save();
     } catch (err) {
       console.log(err);
@@ -266,6 +270,7 @@ router.post('/edit-product/:id',isAdmin, async function (req, res) {
     //         }
     //     });
     // }
+    req.flash('success','Product edited successfully');
     res.redirect('/admin/products');
 });
 

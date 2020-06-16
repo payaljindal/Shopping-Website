@@ -30,12 +30,6 @@ const signup = async (req,res,next) => {
   var username = req.body.username;
   var password = req.body.password;
   var password2 = req.body.password2;
-
-  // req.checkBody('name', 'Name is required!').notEmpty();
-  // req.checkBody('email', 'Email is required!').isEmail();
-  // req.checkBody('username', 'Username is required!').notEmpty();
-  // req.checkBody('password', 'Password is required!').notEmpty();
-  // req.checkBody('password2', 'Passwords do not match!').equals(password);
   
   if (name=="" || email=="" || username=="" || password =="" || password2=="") {
 
@@ -99,7 +93,7 @@ const login = async (req,res,next) => {
     failureRedirect: '/users/login',
     failureFlash: true,
     user : req.user 
-})(req, res, next);
+  })(req, res, next);
 
 }
 

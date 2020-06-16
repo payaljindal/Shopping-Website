@@ -38,7 +38,7 @@ const addtocart = async (req,res,next) => {
             
         }
         req.user.save();
-        req.flash('success', 'Product added!');
+        req.flash('success', 'Product added to cart!');
         res.redirect('back');
     });
 
@@ -123,7 +123,7 @@ const clear = (req,res,next) =>{
     console.log(req.user.cart);
     req.user.save();
 
-    req.flash('success', 'Cart cleared!');
+    req.flash('danger', 'Cart cleared!');
     res.redirect('/cart/checkout');
 }
 
