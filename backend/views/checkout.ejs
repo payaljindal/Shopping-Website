@@ -1,13 +1,13 @@
 <%- include ('_layouts/header') -%>
 
 <% if (cart.length !== 0) { %>
-    <h1 class="page-title">My Cart</h1>
+    <h1 class="page-title">Your Cart</h1>
     <br><br>
     <table class="table table-striped alignmiddle">
         
         <tr>
             <!-- <th>Image</th> -->
-            <th>Title</th>
+            <th>Title </th>
             <th>Price</th>
             <th>Quantity</th>
             <th></th>
@@ -27,7 +27,7 @@
             <td>
                 <a href="/cart/update/<%= product.title %>?action=add">+</a>&nbsp;
                 <a href="/cart/update/<%= product.title %>?action=remove">-</a>&nbsp;
-                <a href="/cart/update/<%= product.title %>?action=clear">Clear</a>&nbsp;
+                <a href="/cart/update/<%= product.title %>?action=clear"><i class="fa fa-trash"></i></a>&nbsp;
             </td>
             <td>Rs.<%= sub %></td>
         </tr>

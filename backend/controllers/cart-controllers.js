@@ -118,7 +118,7 @@ const update = async(req,res,next) => {
         }
     }
     req.user.save();
-    console.log(req.user.cart);
+    // console.log(req.user.cart);
     req.flash('success', 'Cart updated!');
     res.render('checkout', {
         title: 'Checkout',
@@ -131,7 +131,7 @@ const update = async(req,res,next) => {
 const clear = (req,res,next) =>{
     
     req.user.cart = [];
-    console.log(req.user.cart);
+    // console.log(req.user.cart);
     req.user.save();
 
     req.flash('danger', 'Cart cleared!');

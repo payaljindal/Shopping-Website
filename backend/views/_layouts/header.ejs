@@ -4,8 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-
-
+    <link rel='stylesheet' id='font-awesome-css'  href='/css/font-awesome.min52c7.css?ver=6.0.5' type='text/css' media='all' />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title><%= title %></title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
     <link rel="stylesheet" href="/css/style.css" />
@@ -23,48 +25,7 @@
   <span style="color:#30B437"><br>We appreciate your patience!  </span>
   </center>
   <br>
-    <!-- <nav class="navbar fixed-top navbar-expand-lg navbar-light bg-light" style="background-color: #EDFFF5;">
-     
-        <div class="navbar-header">
-         
-          <a class="navbar-brand" href="#"> Samy Greens </a>
-        </div>
-        <div id="navbar" class="collapse navbar-collapse">
-          <ul class="nav navbar-nav">
-            <li><a href="/"  class="nav-link">Home</a></li>
-            <li><a href="/about"  class="nav-link">About</a></li>
-            <li><a href="/contact"  class="nav-link">Contact</a></li>
-            <li><a href="/products/all"  class="nav-link">All products</a></li>
-          </ul>
-          <ul class="nav navbar-nav navbar-right">
-           
-
-            <% if (user) { %>
-              <li>
-                <a href="/cart/checkout"  class="nav-link">My Cart (
-                    <% if (typeof user.cart !== "undefined") { %>
-                    <%= user.cart.length %>
-                    <% } else {%>
-                    0
-                    <% } %>
-                )</a>
-            </li>
-              <% } else {%>
-              <% } %>
-
-            <% if (user) { %>
-              <li><a href="/users/logout"  class="nav-link">Logout</a></li>
-              <% } else {%>
-              <li><a href="/users/register" class="nav-link" mr-sm-2>Register</a></li>
-              <li><a href="/users/login" class="nav-link">Log in</a></li>
-              <% } %>
-              
-              <% if (user && user.admin == 1) { %>
-                <li><a href="/admin/products" class="nav-link">Admin Area</a></li>
-                <% }%>
-            </ul>
-      </div>
-    </nav> -->
+   
      
       <nav class="navbar navbar-expand-lg navbar-light bg-light navbar-fixed-top">
         <div class="navbar-header">
@@ -73,29 +34,7 @@
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
-        <!-- <div class="collapse navbar-collapse" id="navbarNavDropdown">
-          <ul class="navbar-nav">
-            <li class="nav-item active">
-              <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Features</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#">Pricing</a>
-            </li>
-            <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle navbar-right" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                Dropdown link
-              </a>
-              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                <a class="dropdown-item" href="#">Action</a>
-                <a class="dropdown-item" href="#">Another action</a>
-                <a class="dropdown-item" href="#">Something else here</a>
-              </div>
-            </li>
-          </ul>
-        </div> -->
+       
         <div id="navbarNavDropdown" class="collapse navbar-collapse">
           <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
           <ul class="nav navbar-nav">
@@ -123,7 +62,7 @@
         <% if (user) { %>
           <li><a href="/users/logout " class="nav-link mx-4 "> <span  style="color:black;font-size: 1.8em" >Logout</span></a></li>
           <% } else {%>
-          <li><a href="/users/register" class="nav-link mx-4 " ><span  style="color:black;font-size: 1.8em" >Register</span></a></li>
+          <!-- <li><a href="/users/register" class="nav-link mx-4 " ><span  style="color:black;font-size: 1.8em" >Register</span></a></li> -->
           <li><a href="/users/login" class="nav-link mx-4"><span  style="color:black;font-size: 1.8em" >Log in</span></a></li>
           <% } %>
           

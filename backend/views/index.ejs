@@ -1,21 +1,17 @@
 <%- include ('_layouts/header') -%>
 
-
-
 <h1>Search by category</h1>
 <form method="post" action="/products/category">
     <div class="form-group col-md-3">
-    <input name="category" class="form-control" placeholder="Looking for?" style="padding: 20px 9px;"></input>
+    <input name="category" class="form-control" placeholder="Looking for?" style="padding: 20px 9px;font-size: 16px"></input>
     </div>
-    <button> Search</button>
+    <button class="btn btn-default btn-info" style="background-color: #4CAF50;font-size: 16px;text-align: center;padding: 8px 20px;"> Search</button>
 </form>
 <br>
 
    
 <% if (count > 0) { %>
-
             <% products.forEach(function(product){ %>
-                
             <div class="card" style="width: 25rem;">
                 <img class="card-img-top" src="/product_images/<%= product._id %>_<%= product.image %>" alt="<%= product.name %>" width="200" height="200">
                 <div class="card-body">
@@ -28,12 +24,7 @@
                     <% } else {%>
                         <a href="/users/login" class="btn btn-danger" >Login to purchase!</a>
                     <% } %>                
-                
-                
               </div>
-      
-            
-
             <% }); %>
       
 </div>
