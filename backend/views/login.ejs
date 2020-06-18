@@ -1,19 +1,23 @@
 <%- include ('_layouts/header') -%>
 
-<h1><%= title %></h1>
-<div class="col-md-3">
-<form method="post" action="/users/login">
-    
-    <div class="form-group">
-        <label>Username</label>
-        <input type="text" name="username" class="form-control" placeholder="Username">
+<div class="container">
+<center>  <h2>Log in</h2></center>
+<form method="post" action="/users/login" style="text-align:center">
+    <div class="row">
+    <div class="form-group col-md-3">
+        <!-- <label>Username</label> -->
+        <input type="text" name="username" class="form-control" placeholder="Username"   style="padding: 20px 9px;">
     </div>
+</div>
 
-    <div class="form-group">
-        <label>Password</label>
-        <input type="password" name="password" class="form-control"  placeholder="Password">
+<div class="row">
+    <div class="form-group col-md-3">
+        <!-- <label>Password</label> -->
+        <input type="password" name="password" class="form-control"  placeholder="Password" style="padding: 20px 9px;">
     </div>
-
-    <button type="submit" class="btn btn-default">Log in</button>
+</div>
+    <button type="submit" class="btn btn-default btn-info">Log in</button>
 </form>
 </div>
+
+<%- include ('_layouts/footer') -%>

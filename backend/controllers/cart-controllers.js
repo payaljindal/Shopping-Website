@@ -14,7 +14,9 @@ const addtocart = async (req,res,next) => {
             req.user.cart.push({
                 title: p.name,
                 qty: 1,
-                price: parseFloat(p.price).toFixed(2)
+                price: parseFloat(p.price).toFixed(2),
+                id: id,
+                image : p.image
             });
            
         } else {
@@ -33,6 +35,8 @@ const addtocart = async (req,res,next) => {
                     title: p.name,
                     qty: 1,
                     price: parseFloat(p.price).toFixed(2),
+                    id: id,
+                    image : p.image
                 });
             }
             
@@ -73,23 +77,30 @@ const update = async(req,res,next) => {
                 case "add":
                     qty =  req.user.cart[i].qty ; 
                     price = parseFloat(req.user.cart[i].price).toFixed(2);
-                    
+                    id = req.user.cart[i].id;
+                    image = req.user.cart[i].image;
                     req.user.cart.push({
                         title: title,
                         qty: qty+1,
-                        price: parseFloat(price).toFixed(2)
+                        price: parseFloat(price).toFixed(2),
+                        id:id,
+                        image:image
                     });
                     cart.splice(i, 1);
                     break;
                 case "remove":
                     qty =  req.user.cart[i].qty ; 
                     price = parseFloat(req.user.cart[i].price).toFixed(2);
+                    id = req.user.cart[i].id;
+                    image = req.user.cart[i].image;
 
                     if(qty!=1){
                     req.user.cart.push({
                         title: title,
                         qty: qty-1,
-                        price: parseFloat(price).toFixed(2)
+                        price: parseFloat(price).toFixed(2),
+                        id :id,
+                        image :image
                     });
                     }
                     cart.splice(i, 1);

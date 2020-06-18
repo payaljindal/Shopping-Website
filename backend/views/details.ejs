@@ -1,31 +1,37 @@
 <%- include ('_layouts/header') -%>
+<div class="container">
+        <center>
+    <h1> <%- name %> </h1>
+    </center> 
+    <div class="row">
+        <div class="col-md-5">
+            <img  src="/product_images/<%= id %>_<%= image %>" alt="<%= name %>" width="100%" height="100%" >
+        </div>
+        <div class="col-md-7 " style="text-align:center;">
+            <br>
 
-<h1> details page </h1>
+            <br>
+            <%- category %>
+            <br>
+            <%- flavour %>
+            <br>
+            <%- texture %>
+            <br>
+            <%- suggesteduse %>
+            <br>
+            Rs. <%- price %>
 
-<img class="card-img-top" src="/product_images/<%= id %>_<%= image %>" alt="<%= name %>" width="400" height="400">
+            <br><br>
 
+            <a href="/products/all" class="btn btn-primary">Go back</a>
 
-<br>
-<%- name %>
-<br>
-<%- category %>
-<br>
-<%- flavour %>
-<br>
-<%- texture %>
-<br>
-<%- suggesteduse %>
-<br>
-Rs. <%- price %>
+            <!-- <a href="/products/all" class="btn btn-primary">Go back</a> -->
 
-<br><br>
-
-<a href="/products/all" class="btn btn-primary">Go back</a>
-
-<!-- <a href="/products/all" class="btn btn-primary">Go back</a> -->
-
-<% if (loggedIn) { %>
-    <p><a href="/cart/add/<%= id %>">Add to cart</a></p>
-    <% } else {%>
-        <a href="/users/login" class="btn btn-danger" >Login to purchase!</a>
-    <% } %> 
+            <% if (loggedIn) { %>
+                <p><a href="/cart/add/<%= id %>">Add to cart</a></p>
+                <% } else {%>
+                    <a href="/users/login" class="btn btn-danger" >Login to purchase!</a>
+            <% } %> 
+        </div>
+    </div>
+</div>

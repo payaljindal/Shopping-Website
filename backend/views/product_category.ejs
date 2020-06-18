@@ -4,28 +4,15 @@ products of given category
 <h1><%= category %></h1>
 
 <br><br>
-
+<%= products.length %> search results
+<br><br>
     <% products.forEach(function(product){ %>
-    <!-- <tr>
-        <td><%= product.name %></td>
-        <td>$<%= parseFloat(product.price).toFixed(2) %></td>
-        <td><%= product.category %></td>
-        <td>
-            <% if (product.image == "") { %>
-            <img id="noimage" src="/images/noimage.PNG">
-            <% } else {%>
-            <img id="noimage" src="/product_images/<%= product._id %>/<%= product.image %>">
-            <% }%>
-        </td>
-        <td><a href="/admin/products/edit-product/<%= product._id %>">Edit</a></td>
-        <td><a class="confirmDeletion" href="/admin/products/delete-product/<%= product._id %>">Delete</a></td>
-    </tr> -->
     
     <div class="card" style="width: 18rem;">
         <img class="card-img-top" src="/product_images/<%= product._id %>_<%= product.image %>" alt="<%= product.name %>" width="200" height="200">
         <div class="card-body">
           <h5 class="card-title"><%= product.name %></h5>
-          <!-- <p class="card-text">Category : <%= product.category %></p> -->
+          <p class="card-text">Rs. <%= product.price %></p>
           <a href="/products/details/<%= product._id %>" class="btn btn-primary">Get Details</a>
             <% if (loggedIn) { %>
                 <p><a href="/cart/add/<%= product._id %>">Add to cart</a></p>

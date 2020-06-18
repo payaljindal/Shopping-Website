@@ -3,9 +3,9 @@
 
 
 <h1>Search by category</h1>
-<form method="post" action="/products/category" >
+<form method="post" action="/products/category">
     <div class="form-group col-md-3">
-    <input name="category" class="form-control" ></input>
+    <input name="category" class="form-control" placeholder="Looking for?" style="padding: 20px 9px;"></input>
     </div>
     <button> Search</button>
 </form>
@@ -13,15 +13,15 @@
 
    
 <% if (count > 0) { %>
-    <div class="row">
+
             <% products.forEach(function(product){ %>
-                <div class="col m4">
-                    <center>
+                
             <div class="card" style="width: 25rem;">
                 <img class="card-img-top" src="/product_images/<%= product._id %>_<%= product.image %>" alt="<%= product.name %>" width="200" height="200">
                 <div class="card-body">
                   <h5 class="card-title"><%= product.name %></h5>
                   <p class="card-text">Category : <%= product.category %></p>
+                  <p class="card-text">Rs. <%= product.price %></p>
                   <a href="/products/details/<%= product._id %>" class="btn btn-primary">Get Details</a>
                     <% if (loggedIn) { %>
                     <p><a href="/cart/add/<%= product._id %>">Add to cart</a></p>
@@ -29,10 +29,10 @@
                         <a href="/users/login" class="btn btn-danger" >Login to purchase!</a>
                     <% } %>                
                 
-                </div>
+                
               </div>
-            </center>
-              </div>
+      
+            
 
             <% }); %>
       
