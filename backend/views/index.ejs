@@ -1,36 +1,42 @@
 <%- include ('_layouts/header') -%>
-
+<div class="container">
 <h1>Search by category</h1>
 <form method="post" action="/products/category">
     <div class="form-group col-md-3">
     <input name="category" class="form-control" placeholder="Looking for?" style="padding: 20px 9px;font-size: 16px"></input>
     </div>
-    <button class="btn btn-default btn-info" style="background-color: #4CAF50;font-size: 16px;text-align: center;padding: 8px 20px;"> Search</button>
+    <button class="btn btn-default btn-info" style="background-color: #4CAF50;font-size: 16px;text-align: center;padding: 8px 20px;"> <i class="fa fa-search"></i></button>
 </form>
 <br>
 
-   
+<div class="row small-up-2 medium-up-3 large-up-2">
+
 <% if (count > 0) { %>
+
             <% products.forEach(function(product){ %>
-            <div class="card" style="width: 25rem;">
+              <div class="column column-block" >
+            <div class="card" style="width: 25rem;padding: 5px 5px;margin-left: 20px;">
                 <img class="card-img-top" src="/product_images/<%= product._id %>_<%= product.image %>" alt="<%= product.name %>" width="200" height="200">
                 <div class="card-body">
-                  <h5 class="card-title"><%= product.name %></h5>
-                  <p class="card-text">Category : <%= product.category %></p>
-                  <p class="card-text">Rs. <%= product.price %></p>
+                  <h5 class="card-title" style="font-size: large;"><%= product.name %></h5>
+                  <p class="card-text" style="font-size: medium;">Category : <%= product.category %></p>
+                  <p class="card-text">Rs.<%= product.price %></p>
                   <a href="/products/details/<%= product._id %>" class="btn btn-primary">Get Details</a>
                     <% if (loggedIn) { %>
                     <p><a href="/cart/add/<%= product._id %>">Add to cart</a></p>
                     <% } else {%>
                         <a href="/users/login" class="btn btn-danger" >Login to purchase!</a>
-                    <% } %>                
-              </div>
-            <% }); %>
-      
+                    <% } %>              
+            </div>
+          </div>
+          <br>
+        </div>
+  <% }); %>
 </div>
+
     <% } else {%>
     <h3 class="text-center">There are no products.</h3>
     <% }%>
-
+</div>
 
 

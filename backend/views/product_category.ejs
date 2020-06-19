@@ -1,26 +1,29 @@
 <%- include ('_layouts/header') -%>
-
-products of given category
-<h1><%= category %></h1>
-
 <br><br>
-<%= products.length %> search results
-<br><br>
-    <% products.forEach(function(product){ %>
-    
-    <div class="card" style="width: 18rem;">
-        <img class="card-img-top" src="/product_images/<%= product._id %>_<%= product.image %>" alt="<%= product.name %>" width="200" height="200">
-        <div class="card-body">
-          <h5 class="card-title"><%= product.name %></h5>
-          <p class="card-text">Rs. <%= product.price %></p>
-          <a href="/products/details/<%= product._id %>" class="btn btn-primary">Get Details</a>
-            <% if (loggedIn) { %>
+<div class="container">
+<h1 style="text-align:center" ><%= products.length %> matches found for category '<%= category %>'</h1>
+<br>
+<hr>
+<br>
+<div class="row small-up-2 medium-up-3 large-up-2">
+  
+    <% products.forEach(function(product){ %> 
+      <div class="column column-block" style="align-items: center;">
+        <div class="card" style="width: 25rem;padding: 5px 5px;margin-left: 20px;align-items: center;">
+            <img class="card-img-top" src="/product_images/<%= product._id %>_<%= product.image %>" alt="<%= product.name %>" width="200" height="200">
+            <div class="card-body">
+              <h5 class="card-title" style="font-size: medium;"><%= product.name %></h5>
+              <!-- <p class="card-text">Category : <%= product.category %></p> -->
+              <p class="card-text">Rs.<%= product.price %></p>
+              <a href="/products/details/<%= product._id %>" class="btn btn-primary">Get Details</a>
+                <% if (loggedIn) { %>
                 <p><a href="/cart/add/<%= product._id %>">Add to cart</a></p>
-            <% } else {%>
-            <a href="/users/login" class="btn btn-danger" >Login to purchase!</a>
-            <% } %> 
+                <% } else {%>
+                    <a href="/users/login" class="btn btn-danger" >Login to purchase!</a>
+                <% } %>              
         </div>
       </div>
-<br> <br>
-
+      <br>
+    </div>
     <% }); %>
+  </div></div>
