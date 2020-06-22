@@ -166,24 +166,14 @@ router.get('/edit-product/:id',isAdmin, function (req, res) {
 });
 
 router.post('/edit-product/:id',isAdmin, async function (req, res) {
-
-    // var imageFile = typeof req.files.image !== "undefined" ? req.files.image.name : "";
-
-    // req.checkBody('name', 'Title must have a value.').notEmpty();
-    // req.checkBody('taste', 'Description must have a value.').notEmpty();
-    // req.checkBody('price', 'Price must have a value.').isDecimal();
-    // req.checkBody('image', 'You must upload an image').isImage(imageFile);
-
-    const{ name, flavour, texture, taste, suggesteduse, price , category } = req.body;
+    const{ name, flavour, texture, taste, suggesteduse, price , category , image , uimage} = req.body;
     let existing;
-  
     const id = req.params.id;
 
     await Product.findById(id, function (err, existing) {
                         if (err)
                             console.log(err);
-
-                            
+                        
     if (existing) {
         if(name != "")
           existing.name = name;
@@ -199,8 +189,23 @@ router.post('/edit-product/:id',isAdmin, async function (req, res) {
           existing.price = price;
         if(category != "")
           existing.category = category;
-          // if(image != "")
-          //     existing.image = imageFile;
+        if(uimage != ""){
+            var path = 'public/product_images/' + id + '_' + existing.image ;
+            fs.remove(path, async function (err) {
+                if (err) {
+                    console.log(err);
+                } 
+             });
+             const imageFile = req.files.uimage.name;
+             var productImage = req.files.uimage;
+            var path = 'public/product_images/' + id + '_' + imageFile;
+
+            productImage.mv(path, function (err) {
+                });
+                existing.image = imageFile;
+
+          }
+              
     }
     try {
    
@@ -210,66 +215,6 @@ router.post('/edit-product/:id',isAdmin, async function (req, res) {
     }
                         });
     
-  
-    // const{ name, flavour, texture, taste, suggesteduse, price , category } = req.body;
-    // var id = req.params.id;
-    // const imageFile = req.files.image.name;
-    // var errors = req.validationErrors();
-
-    // if (errors) {
-    //     req.session.errors = errors;
-    //     res.redirect('/admin/products/edit-product/' + id);
-    // } else {
-    //     Product.findOne({ _id: {'$ne': id}}, function (err, p) {
-    //         if (err)
-    //             console.log(err);
-
-    //         if (p) {
-    //             req.flash('danger', 'Product title exists, choose another.');
-    //             res.redirect('/admin/products/edit-product/' + id);
-    //         } else {
-    //             Product.findById(id, function (err, p) {
-    //                 if (err)
-    //                     console.log(err);
-
-    //                 p.title = title;
-    //                 p.slug = slug;
-    //                 p.desc = desc;
-    //                 p.price = parseFloat(price).toFixed(2);
-    //                 p.category = category;
-    //                 if (imageFile != "") {
-    //                     p.image = imageFile;
-    //                 }
-
-    //                 p.save(function (err) {
-    //                     if (err)
-    //                         console.log(err);
-
-    //                     if (imageFile != "") {
-    //                         if (pimage != "") {
-    //                             fs.remove('public/product_images/' + id + '/' + pimage, function (err) {
-    //                                 if (err)
-    //                                     console.log(err);
-    //                             });
-    //                         }
-
-    //                         var productImage = req.files.image;
-    //                         var path = 'public/product_images/' + id + '/' + imageFile;
-
-    //                         productImage.mv(path, function (err) {
-    //                             return console.log(err);
-    //                         });
-
-    //                     }
-
-    //                     req.flash('success', 'Product edited!');
-    //                     res.redirect('/admin/products/edit-product/' + id);
-    //                 });
-
-    //             });
-    //         }
-    //     });
-    // }
     req.flash('success','Product edited successfully');
     res.redirect('/admin/products');
 });

@@ -1,7 +1,6 @@
 <%- include ('_layouts/header') -%>
 
 <!-- carousel -->
-
 <div id="carouselExampleCaptions" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleCaptions" data-slide-to="0" class="active"></li>
@@ -17,17 +16,20 @@
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/images/crousel2.PNG" class="d-block w-100" alt="..." height="500" >
+        <img src="/images/cart-crousel.PNG" class="d-block w-100" alt="..." height="500" width="150" >
         <div class="carousel-caption d-none d-md-block">
-			<a class="btn btn-info" href="/products/all" style="background-color: #4CAF50;font-size: 16px;padding: 14px 40px;text-align: center;width: 250px;">Get Products</a>
-          <!-- <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p> -->
+          <% if (user) { %>
+            <a class="btn btn-info" href="/cart/checkout" style="background-color: #4CAF50;font-size: 16px;padding: 14px 40px;text-align: center;width: 250px;">Go to cart</a>
+            <% } else {%>
+            <a href="/users/login" class="btn btn-info" style="background-color: #4CAF50;font-size: 16px;padding: 14px 40px;text-align: center;width: 250px;">Log in to go to cart</a>
+            <% } %>
         </div>
       </div>
       <div class="carousel-item">
-        <img src="/images/crousel2.PNG" class="d-block w-100" alt="..." height="500" >
+        <img src="/images/last-crousel.PNG" class="d-block w-100" alt="..." height="500" width="150" >
         <div class="carousel-caption d-none d-md-block">
-          <a class="btn btn-info" href="/products/all" style="background-color: #4CAF50;font-size: 16px;padding: 14px 40px;text-align: center;width: 250px;">Get Products</a>
-          <!-- <p>Praesent commodo cursus magna, vel scelerisque nisl consectetur.</p> -->
+          <!-- <a class="btn btn-info" href="/products/all" style="background-color: #4CAF50;font-size: 16px;padding: 14px 40px;text-align: center;width: 250px;">Get Products</a> -->
+          
         </div>
       </div>
     </div>
@@ -43,6 +45,60 @@
   </div>
 
   <!-- carousel ends -->
+  <div style="text-align: center;">
+  <span style="font-size: xx-large;font-family: Georgia, 'Times New Roman', Times, serif;color: #666666">Our Prestig<span style="text-decoration: underline;text-underline-position: under; -webkit-text-decoration-color: #4CAF50;">ious Busi</span>ness Partners</span>
+<br>  <br>
+</div>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.2/owl.carousel.css" rel="stylesheet" />
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/owl-carousel/1.3.2/owl.carousel.js"></script>
 
+  <div id="owl-demo">
+
+    <div class="owl-item grayscale" style="width: 293px;">
+      <img src="/images/partner1.PNG" alt="Owl Image" width="100%" height="100">
+    </div>
+    <div class="owl-item grayscale" style="width: 293px;">
+      <img src="/images/partner2.PNG" alt="Owl Image" width="100%">
+    </div>
+    <div class="owl-item grayscale" style="width: 293px;">
+      <img src="/images/partner3.PNG" alt="Owl Image" width="100%">
+    </div>
+    <div class="owl-item grayscale" style="width: 293px;">
+      <img src="/images/partner4.PNG" alt="Owl Image" width="100%">
+    </div>
+    <div class="owl-item grayscale" style="width: 293px;">
+      <img src="/images/partner5.PNG" alt="Owl Image" width="100%">
+    </div>
+    <div class="owl-item grayscale" style="width: 293px;">
+      <img src="/images/partner6.PNG" alt="Owl Image" width="100%">
+    </div>
+    <div class="owl-item grayscale" style="width: 293px;">
+      <img src="/images/partner7.PNG" alt="Owl Image"  height="100" width="100%">
+    </div>
+    <div class="owl-item grayscale" style="width: 293px;">
+      <img src="/images/partner8.PNG" alt="Owl Image"  height="100" width="100%">
+    </div>
+    <div class="owl-item grayscale" style="width: 293px;">
+      <img src="/images/partner9.PNG" alt="Owl Image"  height="100" width="100%">
+    </div>
+    <div class="owl-item grayscale" style="width: 293px;">
+      <img src="/images/partner10.PNG" alt="Owl Image"  height="100" width="100%">
+    </div>
+    <div class="owl-item grayscale" style="width: 293px;">
+      <img src="/images/partner11.PNG" alt="Owl Image"  height="100" width="100%">
+    </div>
+    <div class="owl-item grayscale" style="width: 293px;">
+      <img src="/images/partner12.PNG" alt="Owl Image"  height="100" width="100%">
+    </div>
+    <div class="owl-item grayscale" style="width: 293px;">
+      <img src="/images/partner13.PNG" alt="Owl Image"  height="100" width="100%">
+    </div>
+    <div class="owl-item grayscale" style="width: 293px;" >
+    <div class="owl-item grayscale" style="width: 293px;" >
+      <img src="/images/partner14.PNG" alt="Owl Image"  height="100" width="100%">
+    </div>
+  </div>
 
 <%- include ('_layouts/footer') -%>

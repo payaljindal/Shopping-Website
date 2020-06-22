@@ -46,16 +46,16 @@
         <label for="">Current Image</label>
         <p>
             <% if (image == "") { %>
-            <img id="noimage" src="/images/noimage.png" alt="">
+            <img id="noimage" src="/images/noimage.png" alt="" name = "image">
             <% } else {%>
-            <img id="noimage" src="/product_images/<%= id %>/<%= image %>" alt="">
+            <img id="noimage" name="image" src="/product_images/<%= id %>_<%= image %>" alt="" width="150" height="150">
             <% } %>
         </p>
     </div>
     
     <div class="form-group">
         <label for="">Upload Image</label>
-        <input type="file" class="form-control" name="image" id="img">
+        <input type="file" class="form-control" name="uimage" id="img"  accept=".jpg,.png,.jpeg">
         <img src="#" id="imgPreview" alt="">
     </div>
     

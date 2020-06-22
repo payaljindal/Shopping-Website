@@ -14,7 +14,7 @@
             <div class="card-body">
               <h5 class="card-title" style="font-size: medium;"><%= product.name %></h5>
               <!-- <p class="card-text">Category : <%= product.category %></p> -->
-              <p class="card-text">Rs.<%= product.price %></p>
+              <p class="card-text" style="font-size: medium;"><i class="fa fa-trash"></i><%= product.price %> per kg</p>
               <a href="/products/details/<%= product._id %>" class="btn btn-primary">Get Details</a>
                 <% if (loggedIn) { %>
                 <p><a href="/cart/add/<%= product._id %>">Add to cart</a></p>
