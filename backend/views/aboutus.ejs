@@ -1,5 +1,56 @@
 <%- include ('_layouts/header') -%>
 
-<h1>About us</h1>
+<script> 
+    $(document).ready(function(){
+      $("#flip1").click(function(){
+        $("#panel1").slideToggle("slow");
+      });
+      $("#flip2").click(function(){
+        $("#panel2").slideToggle("slow");
+      });
+      $("#flip3").click(function(){
+        $("#panel3").slideToggle("slow");
+      });
+    });
+    </script>
 
+<div class="container" > 
+<div class="offset-md-3 col-md-6" style="align-items: center;">
+<h1 style="font-size: x-large;text-align: center;color: rgb(17, 68, 10);">How are we different?</h1>
+
+<div id="flip1" style="  padding: 10px;border: solid 1px #c3c3c3;border-radius: 6px;font-size: medium;cursor: pointer;" class="row">
+<div class="col-md-11">METHODOLOGY</div> <div class="col-md-1" style="text-align: center;"><span style="background-color: rgb(42, 104, 42);border-radius: 100%;color: white;"> <b>&nbsp;+&nbsp;</b></span></div></div>
+<div id="panel1" style="  padding: 10px;text-align: center;border: dashed 1px #c3c3c3;display: none;margin-top: auto;font-size: small;">
+    <div class="row">
+    <div class="col-md-6"><img src="/images/methodology.PNG" alt=""></div>
+    <div class="col-md-6" style="text-align: left;"> <br> Grown w/o the use of Manures, Growth Harmones or Pesticides. Grown on specially enriched substrates, controlled environment and expert, caring hands.
+    </div></div>
+</div>
+
+<br>
+
+<div id="flip2" style="  padding: 10px;border: solid 1px #c3c3c3;border-radius: 6px;font-size: medium;cursor: pointer;" class="row">
+    <div class="col-md-11">TECHNOLOGY</div> <div class="col-md-1" style="text-align: center;"><span style="background-color: rgb(42, 104, 42);border-radius: 100%;color: white;"> <b>&nbsp;+&nbsp;</b></span></div></div>
+    <div id="panel2" style="  padding: 10px;text-align: center;border: dashed 1px #c3c3c3;display: none;margin-top: auto;font-size: small;">
+        <div class="row">
+            <div class="col-md-6"><img src="/images/technology.PNG" alt=""></div>
+            <div class="col-md-6" style="text-align: inherit;"> <br><br> Highest quality seeds, use of high quality soil and cocopit, use of pure drinking water.
+            </div></div>
+</div>
+
+<br>
+
+<div id="flip3" style="  padding: 10px;border: solid 1px #c3c3c3;border-radius: 6px;font-size: medium;cursor: pointer;" class="row">
+    <div class="col-md-11">AIR</div> <div class="col-md-1" style="text-align: center;"><span style="background-color: rgb(42, 104, 42);border-radius: 100%;color: white;"> <b>&nbsp;+&nbsp;</b></span></div></div>
+    <div id="panel3" style="  padding: 10px;text-align: center;border: dashed 1px #c3c3c3;display: none;margin-top: auto;font-size: small;">
+        <div class="row">
+            <div class="col-md-6"><img src="/images/air.PNG" alt=""></div>
+            <div class="col-md-6" style="text-align: inherit;"> <br><br>  Clean and cooler temperature. 
+                Plenty of bright sunshine and away from the city pollution.
+            </div></div>
+</div>
+<br>
+
+</div> 
+</div>
 <%- include ('_layouts/footer') -%>

@@ -43,7 +43,7 @@ const addtocart = async (req,res,next) => {
         }
         req.user.save();
         req.flash('success', 'Product added to cart!');
-        res.redirect('back');
+        res.redirect('/products/details/'+ id);
     });
 
 };

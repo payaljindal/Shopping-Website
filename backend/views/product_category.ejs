@@ -8,22 +8,24 @@
 <div class="row small-up-2 medium-up-3 large-up-2">
   
     <% products.forEach(function(product){ %> 
-      <div class="column column-block" style="align-items: center;">
-        <div class="card" style="width: 25rem;padding: 5px 5px;margin-left: 20px;align-items: center;">
+      <div class="column column-block" >
+        <div class="card" style="width: 25rem;padding: 5px 5px;margin-left: 20px;">
             <img class="card-img-top" src="/product_images/<%= product._id %>_<%= product.image %>" alt="<%= product.name %>" width="200" height="200">
             <div class="card-body">
-              <h5 class="card-title" style="font-size: medium;"><%= product.name %></h5>
-              <!-- <p class="card-text">Category : <%= product.category %></p> -->
-              <p class="card-text" style="font-size: medium;"><i class="fa fa-trash"></i><%= product.price %> per kg</p>
-              <a href="/products/details/<%= product._id %>" class="btn btn-primary">Get Details</a>
-                <% if (loggedIn) { %>
-                <p><a href="/cart/add/<%= product._id %>">Add to cart</a></p>
+              <h5 class="card-title" style="font-size: large;"><%= product.name %></h5>
+              <p class="card-text" style="font-size: medium;">Category : <%= product.category %></p>
+              <p class="card-text" style="font-size: medium;"> <i class="fa fa-rupee"></i> <%= product.price %></p>
+              <a href="/products/details/<%= product._id %>" class="btn btn-default btn-info" style="background-color: #4CAF50;font-size: 16px;text-align: center;">Get Details</a>
+              <br>  <br>
+              <% if (loggedIn) { %>
+                <p><a href="/cart/add/<%= product._id %>" class="btn btn-default btn-info" style="background-color: #4CAF50;font-size: 16px;text-align: center;align-items: flex-end;">Add to cart</a></p>
                 <% } else {%>
-                    <a href="/users/login" class="btn btn-danger" >Login to purchase!</a>
+                    <a href="/users/login" class="btn btn-danger" style="font-size: 16px;text-align: center;">Login to purchase!</a>
                 <% } %>              
         </div>
       </div>
       <br>
     </div>
+
     <% }); %>
   </div></div>

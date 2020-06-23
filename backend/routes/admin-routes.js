@@ -166,7 +166,7 @@ router.get('/edit-product/:id',isAdmin, function (req, res) {
 });
 
 router.post('/edit-product/:id',isAdmin, async function (req, res) {
-    const{ name, flavour, texture, taste, suggesteduse, price , category , image , uimage} = req.body;
+    const{ name, flavour, texture, taste, suggesteduse, price , category , image} = req.body;
     let existing;
     const id = req.params.id;
 
@@ -189,7 +189,7 @@ router.post('/edit-product/:id',isAdmin, async function (req, res) {
           existing.price = price;
         if(category != "")
           existing.category = category;
-        if(uimage != ""){
+        if(typeof req.body.uimage != "undefined"){
             var path = 'public/product_images/' + id + '_' + existing.image ;
             fs.remove(path, async function (err) {
                 if (err) {
@@ -208,7 +208,6 @@ router.post('/edit-product/:id',isAdmin, async function (req, res) {
               
     }
     try {
-   
        existing.save();
     } catch (err) {
       console.log(err);
@@ -256,7 +255,5 @@ router.get('/delete-product/:id',isAdmin, async function (req, res) {
     });
 
 });
-
-
 
 module.exports = router;

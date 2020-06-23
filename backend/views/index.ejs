@@ -3,7 +3,16 @@
 <h1>Search by category</h1>
 <form method="post" action="/products/category">
     <div class="form-group col-md-3">
-    <input name="category" class="form-control" placeholder="Looking for?" style="padding: 20px 9px;font-size: 16px"></input>
+    <!-- <input name="category" class="form-control" placeholder="Looking for?" style="padding: 20px 9px;font-size: 16px"></input> -->
+    <select name="category" id="cars" style="padding: 10px 9px;font-size: 16px;width: 100%;">
+      <option value=""></option>
+      <option value="Microgreens">Microgreens</option>
+      <option value="Edible Flowers">Edible Flowers</option>
+      <option value="Fresh Herbs">Fresh Herbs</option>
+      <option value="Rockets">Rockets</option>
+      <option value="Purple / Lemon / Cinnamon Basils">Purple / Lemon / Cinnamon Basils</option>
+      <option value="Baby Vegetables">Baby Vegetables</option>
+    </select>
     </div>
     <button class="btn btn-default btn-info" style="background-color: #4CAF50;font-size: 16px;text-align: center;padding: 8px 20px;"> <i class="fa fa-search"></i></button>
 </form>

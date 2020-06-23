@@ -165,7 +165,7 @@ const changepassword = async (req,res,next) => {
 const logout = (req,res,next) => {
   req.logout();
   req.flash('success','Logged out!');
-  console.log('logout');
+  // console.log('logout');
   res.redirect('/users/login');
 
 }

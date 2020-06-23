@@ -3,7 +3,12 @@
 <div class="container">
 
 <% if (cart.length !== 0) { %>
+    <div>
     <h1 class="page-title">Your Cart</h1>
+</div>
+    <div class="col-xs-6 end col-xs-offset-10" >
+    <a class="clearcart btn btn-danger" href="/cart/clear" style="font-size: 16px;margin-bottom: 12px;">Clear cart</a>
+</div>
     <br><br>
     <table class="table alignmiddle" style="padding: 15px 15px;">
         
@@ -33,16 +38,16 @@
             </td>
         </tr>
         <% }); %>
-        <tr>
-            <td colspan="3" style="text-align: end;" ><span style="font-size: 16px;"> <b>Total: </b> Rs.<%= parseFloat(total).toFixed(2) %>
+        <tr><td></td><td></td>
+            <td colspan="3" style="text-align: center;" ><span style="font-size: 16px;"> <b>Total: </b> <i class="fa fa-rupee"></i> <%= parseFloat(total).toFixed(2) %>
             </span></td>
         </tr>
         <tr>
-            <td colspan="2" align="right">
-                <a class="clearcart btn btn-danger" href="/cart/clear">Clear cart</a>
+            
+            <td colspan="2"  align="right">
             </td>
-            <td colspan="2" align="right">
-                <a class="btn btn-success buynow" href="#">Buy now</a>
+            <td colspan="2" align="center">
+                <a class="btn btn-success buynow" href="#"  style="font-size: 16px;margin-bottom: 12px;">Buy now</a>
             </td>
         </tr>
         
