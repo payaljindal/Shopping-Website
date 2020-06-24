@@ -14,4 +14,23 @@ router.get('/checkout',cartControllers.checkout);
 
 router.get('/clear', cartControllers.clear);
 
+// get buy form 
+router.get('/buy', function (req, res) {
+
+    var name = req.user.name;
+    var contact = "";
+    var address = "";
+
+    
+        res.render('buynow', {
+            name : name,
+            contact : contact,
+            address : address,
+            title : 'Buy Now'
+        });
+   
+
+
+});
+
 module.exports = router;
