@@ -17,17 +17,27 @@ router.get('/clear', cartControllers.clear);
 // get buy form 
 router.get('/buy', function (req, res) {
 
-    var name = req.user.name;
-    var contact = "";
-    var address = "";
-
-    
-        res.render('buynow', {
-            name : name,
-            contact : contact,
-            address : address,
-            title : 'Buy Now'
-        });
+    var cart = req.user.cart;
+    var total = 0; 
+    cart.forEach(function(product){ 
+        var sub = parseFloat(product.qty * product.price).toFixed(2) 
+        total += +sub 
+    });
+    console.log(req.user.cart);
+   if(req.user.cart === []){
+       console.log("in if");
+       req.flash('danger', 'First, add something to cart!');
+       res.redirect('/products/all');
+   }
+   else{
+       console.log("else");
+   var name = req.user.name;
+       res.render('buynow', {
+           name : name,
+           title : 'Buy Now',
+           total : total
+       });
+   }
    
 
 
