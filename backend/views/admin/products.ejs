@@ -1,5 +1,5 @@
 <%- include('../_layouts/admin-header') -%>
-
+<div class="container">
 <h2 class="page-title">Products</h2>
 <a href="/admin/products/add-product" class="btn btn-primary">Add a new product</a>
 <br><br>
@@ -12,6 +12,7 @@
             <th>Price</th>
             <th>Category</th>
             <th>Product Image</th>
+            <th>Available</th>
             <th>Edit</th>
             <th>Delete</th>
         </tr>
@@ -30,6 +31,13 @@
                 <img id="noimage" src="/product_images/<%= product._id %>_<%= product.image %>" width="50" height="50">
                 <% }%>
             </td>
+            <td> <% if (product.available){ %>
+                Yes
+            <% }else{ %>
+                No
+                <% } %>
+            
+            </td>
             <td><a href="/admin/products/edit-product/<%= product._id %>">Edit</a></td>
             <td><a class="confirmDeletion" href="/admin/products/delete-product/<%= product._id %>">Delete</a></td>
         </tr>
@@ -40,4 +48,5 @@
 <h3 class="text-center">There are no products.</h3>
 <% }%>
 
+</div>
 <%- include('../_layouts/admin-footer') -%>
