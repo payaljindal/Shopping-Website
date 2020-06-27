@@ -10,7 +10,8 @@ const productSchema = new schema({
 	taste : { type : String},
 	suggesteduse  : {type : String},
 	price : { type : Number},
-	category : {type : String}
+	category : {type : String},
+	available : {type : Boolean},
 });
 
 productSchema.plugin(uniqueValidator);

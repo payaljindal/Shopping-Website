@@ -53,6 +53,7 @@ const details = async (req,res,next) => {
                           image: p.image,
                           id: p._id,
                           loggedIn: loggedIn,
+                          available : p.available
                       });
                   }    
           
@@ -78,7 +79,7 @@ const getProductsByCategory = async (req,res,next) => {
 
   Product.find({category : category}, function (err, products) {
       res.render('product_category', {
-        title: 'Categoy',
+        title: 'Category',
         category : category,
           products: products,
           count: count,

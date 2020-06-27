@@ -65,7 +65,7 @@ router.post('/add-product',isAdmin, async function (req, res) {
 
     var error =0;
     
-      const{ name, flavour, texture, taste, suggesteduse, price , category,image } = req.body;
+      const{ name, flavour, texture, taste, suggesteduse, price , category,image,available } = req.body;
 
       if(name=="" || flavour=="" || texture=="" || taste =="" || suggesteduse=="" || price=="" || category=="" || image==""){
         req.flash('danger','Missing credentials');
@@ -93,8 +93,9 @@ if(error === 0){
       suggesteduse,
       price,
       category,
+      available,
     });
-
+    console.log(available);
     try {
       await created.save(function (err) {
                         if (err){
@@ -158,7 +159,8 @@ router.get('/edit-product/:id',isAdmin, function (req, res) {
                             category: p.category,
                             price: parseFloat(p.price).toFixed(2),
                             image: p.image,
-                            id: p._id
+                            id: p._id,
+                            available : p.available
                         });
                     }    
             
@@ -166,7 +168,7 @@ router.get('/edit-product/:id',isAdmin, function (req, res) {
 });
 
 router.post('/edit-product/:id',isAdmin, async function (req, res) {
-    const{ name, flavour, texture, taste, suggesteduse, price , category , image} = req.body;
+    const{ name, flavour, texture, taste, suggesteduse, price , category , image, available} = req.body;
     let existing;
     const id = req.params.id;
 
@@ -175,6 +177,7 @@ router.post('/edit-product/:id',isAdmin, async function (req, res) {
                             console.log(err);
                         
     if (existing) {
+        existing.available = available;
         if(name != "")
           existing.name = name;
         if(flavour != "")

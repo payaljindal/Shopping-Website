@@ -15,10 +15,15 @@
             <br>
             <br>
             <% if (loggedIn) { %>
-                <p><a href="/cart/add/<%= id %>" class="btn btn-default btn-info" style="background-color: #165a18;font-size: 16px;text-align: center;padding: 3px 3px 3px 3px;">Add to cart</a></p>
+                <% if (available) { %>
+                  <p><a href="/cart/add/<%= id %>" class="btn btn-default btn-info" style="background-color: #4CAF50;font-size: 16px;text-align: center;align-items: flex-end;">Add to cart</a></p>
+                  <% } else {%>
+                      <a href="#" class="btn btn-danger" style="font-size: 16px;text-align: center;">Not available</a>
+                  <% } %>  
+                    
                 <% } else {%>
-                    <a href="/users/login" class="btn btn-danger" >Login to purchase!</a>
-            <% } %> 
+                    <a href="/users/login" class="btn btn-danger" style="font-size: 16px;text-align: center;">Login to purchase!</a>
+                <% } %>  
             <br>
             <span style="font-size:large;">
             Category -<%- category %>

@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
-var auth = require('../config/auth');
-var isUser = auth.isUser;
+
 
 const productControllers = require('../controllers/products-controllers');
 
