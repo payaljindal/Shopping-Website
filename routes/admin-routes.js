@@ -6,9 +6,9 @@ var resizeImg = require('resize-img');
 var auth = require('../config/auth');
 var isAdmin = auth.isAdmin;
 const Product = require('../models/product-model');
+const Order = require('../models/order-model');
 const fileupload = require('../middleware/file-upload')
 const User = require('../models/user-model');
-
 
 
 // to display all products to admin
@@ -258,5 +258,26 @@ router.get('/delete-product/:id',isAdmin, async function (req, res) {
     });
 
 });
+
+
+// to display all orders to admin
+router.get('/orders',isAdmin, async function (req, res) {  
+      var count;
+  
+      await Order.countDocuments(function (err, c) {
+          count = c;
+      });
+  
+      Order.find(function (err, orders) {
+          res.render('admin/orders', {
+              orders : orders,
+              count: count
+          });
+          
+      });
+    
+  });
+
+
 
 module.exports = router;

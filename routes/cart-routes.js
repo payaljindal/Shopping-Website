@@ -3,7 +3,7 @@ const router = express.Router();
 var auth = require('../config/auth');
 var isUser = auth.isUser;
 const cartControllers = require('../controllers/cart-controllers');
-
+const Order= require('../models/order-model');
 // add to cart
 router.get('/add/:id',isUser , cartControllers.addtocart);
 
@@ -37,6 +37,24 @@ router.get('/buy',isUser , function (req, res) {
             total : total
         });
     }
+});
+
+router.post('/buy',isUser , function (req, res) {
+
+    var cart = req.user.cart;
+    const { name, address ,contact } = req.body;
+    const order = new Order({
+        name,
+        address,
+        cart : req.user.cart,
+        user : req.user,
+        paymentid : "payment id",
+        contact : contact
+    });
+    
+    order.save();
+    req.flash('success', 'Successfully ordered!');
+    res.redirect('/cart/checkout');
 });
 
 module.exports = router;

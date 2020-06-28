@@ -1,0 +1,60 @@
+<%- include('../_layouts/admin-header') -%>
+<div class="container">
+
+<% if (count > 0) { %>
+<table class="table alignmiddle" style="text-align: center;" >
+    <thead>
+        <tr class="home" >
+            <th style="text-align: center;">Name</th>
+            <th style="text-align: center;">Address</th>
+            <th  style="text-align: center;">Contact </th>
+            <th style="text-align: center;">Cart</th> 
+            <th style="text-align: center;">Total</th>
+            <th style="text-align: center;">Payment</th>
+           
+        </tr>
+    </thead>
+    <tbody>
+        <% orders.forEach(function(order){ %>
+            <% var total = 0; %>
+        <tr>
+            <td><%= order.name %></td>
+           
+            <td ><%= order.address %></td>
+            <td ><%= order.contact %></td>
+            <td >
+               
+                    <table style="text-align: center;" class="table border alignmiddle">
+                        <thead>
+                        <tr>
+                        <th style="text-align: center;">Product</th>
+                        <th style="text-align: center;">Quantity</th>
+                        <th style="text-align: center;">Price</th>
+                        </tr>
+                        </thead>
+                        <% order.cart.forEach(function(a){ %>
+                        <tr>
+                            <td><%= a.title %></td>
+                            <td><%= a.qty %></td>
+                            <td><%= a.price %></td>
+                            <% var sub = parseFloat(a.qty * a.price).toFixed(2) %>
+                            <% total += +sub %>
+                        </tr>
+                        <% }); %>
+                    </table>
+               
+            </td>
+            <td>
+               <span style="font-size: large;"> <b> <i class="fa fa-rupee"></i> <%= total %> </b> </span>
+            </td>
+           
+        </tr>
+        <% }); %>
+    </tbody>
+</table>
+<% } else {%>
+<h3 class="text-center">There are no orders.</h3>
+<% }%>
+
+</div>
+<%- include('../_layouts/admin-footer') -%>
