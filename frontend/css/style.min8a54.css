@@ -1,0 +1,1901 @@
+﻿/*
+Theme Name: CmsSuperHero
+Theme URI: http://cmssuperheroes.com/wordpress/cshero
+Author: Cmssuperheroes Team
+Author URI: http://cmssuperheroes.com/
+Version: 1.0
+License: GNU General Public License v2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+Tags: black, green, white, light, dark, two-columns, three-columns, left-sidebar, right-sidebar, fixed-layout, responsive-layout, custom-background, custom-header, custom-menu, editor-style, featured-images, flexible-header, full-width-template, microformats, post-formats, rtl-language-support, sticky-post, theme-options, translation-ready, accessibility-ready
+Description: In 2014, Creating a magazine website with WordPress has never been easier.
+Text Domain: WP_OrganicFood
+*/
+/*--
+REQUIRED: .wp-caption css class is needed in your theme css.
+REQUIRED:.wp-caption-text css class is needed in your theme css.
+REQUIRED:.gallery-caption css class is needed in your theme css.
+REQUIRED:.bypostauthor css class is needed in your theme css.
+REQUIRED:.alignright css class is needed in your theme css.
+REQUIRED:.alignleft css class is needed in your theme css.
+REQUIRED:.aligncenter css class is needed in your theme css.
+--*/
+html, body, div, span, applet, object, iframe, table, caption, tbody, tfoot, thead, tr, th, td,
+del, dfn, em, font, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code,
+dl, dt, dd, ol, ul, li, fieldset, form, label, legend {
+    vertical-align: baseline;
+    font-family: inherit;
+    font-weight: inherit;
+    font-style: inherit;
+    font-size: 100%;
+    outline: 0;
+    padding: 0;
+    margin: 0;
+    border: 0;
+}
+body {
+    line-height: 2em;
+    max-width:   100%;
+    background: white;
+    position: relative;
+}
+*:focus {
+    outline: 0;
+}
+a:hover, a:focus {
+    text-decoration: none;
+}
+input[type=submit] {
+   -webkit-appearance: none;
+}
+
+/* mixins */
+.center {
+    text-align:center;
+}
+
+.center th,.center tr,.center td{
+    text-align:center;
+}
+/* end mixins */
+
+html {
+    max-width: 100%;
+    margin: 0 !important;
+}
+body.admin-bar {
+    margin-top: 0px;
+}
+ol, ul {
+    list-style: none;
+    padding: 0;
+}
+ol, ul {
+    padding-left: 10px;
+}
+.widget > ul,ul.menu{
+    padding-left: 0;
+}
+input[type=text]::-ms-clear {
+    display: none;
+}
+
+sup {
+    font-size: 10px;
+    vertical-align: super;
+}
+
+sub {
+    font-size: 10px;
+    vertical-align: sub;
+}
+
+p:empty {
+    display: none;
+}
+
+article,aside,details,figcaption,figure,
+footer,header,hgroup,menu,nav,section {
+    display:block;
+}
+h1, h2, h3, h4, h5, h6 {
+    font-weight: normal;
+    letter-spacing: 0;
+    margin: 0 0 15px;
+}
+h1.entry-title {
+    font-size: 40px;
+}
+img {
+    max-width: 100%;
+    height: auto;
+}
+/* background video*/
+.stripe-video-wrap{
+    position: relative;
+}
+.stripe-video-bg{
+    position: absolute!important;
+    top: 0;
+    left: 0;
+    overflow: hidden;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+}
+.stripe-video-bg > video {
+    visibility: visible;
+    width: 100%;
+}
+.stripe-video-content{
+    z-index: 10;
+    position: relative;
+}
+.ww-video-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: block;
+    z-index: 9;
+}
+embed, iframe, object, video {
+    border: medium none;
+    max-width: 100%;
+}
+
+.col-no-padding .column_container {
+    padding: 0 !important;
+}
+.unliststyle {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+.unliststyle li {
+    margin-bottom: 10px;
+}
+.wpb_row {
+    margin-bottom: 0 !important;
+}
+.upper {
+    text-transform: uppercase;
+}
+.left {
+    float: left !important;
+}
+.right {
+    float: right !important;
+}
+.title-left .wg-title,
+.title-left .ww-title,
+.title-left .cs-title,
+.title-left .ww-desc,
+.title-left .cs-desc,
+.title-left .ww-subtitle,
+.title-left .cs-subtitle {
+    text-align: left !important;
+}
+.title-center .wg-title,
+.title-center .ww-title,
+.title-center .cs-title,
+.title-center .ww-desc,
+.title-center .cs-desc
+.title-center .ww-subtitle,
+.title-center .cs-subtitle {
+    text-align: center !important;
+}
+.title-right .wg-title,
+.title-right .ww-title,
+.title-right .cs-title,
+.title-right .ww-desc,
+.title-right .cs-desc,
+.title-right .ww-subtitle,
+.title-right .cs-subtitle {
+    text-align: right !important;
+}
+.ww-title.title-lg {
+    font-size: 30px;
+}
+.title-lg .cs-title {
+    font-size: 30px;
+}
+.title-lg h1.ww-title {
+    font-size: 96px;
+    margin: 20px 0 0 0;
+    line-height: 76px;
+}
+.paddingTextColumn .wpb_text_column {
+    padding: 0 30px;
+}
+.table {
+    display: table;
+}
+.table-cell {
+    display: table-cell;
+    vertical-align: top;
+}
+.table-cell.cell-bottom {
+    vertical-align: bottom;
+}
+.w100 {
+    width: 100%;
+}
+.w50 {
+    width: 50%;
+}
+.w25 {
+    width: 25%;
+} 
+.widget-block-header {
+    margin-bottom: 40px;
+}
+.no-margin.vc_row-fluid, .no-margin.wpb_column, .no-margin .wpb_text_column {
+    margin-bottom: 0 !important;
+}
+.welcome {
+    font-size: 28px;
+    color: #fff;
+}
+.section-bgColor1 {
+    background: rgb(238, 238, 238) !important;
+}
+/*-------------------------------------------------------------------------*/
+/*  2.  Main Style
+/*-------------------------------------------------------------------------*/
+
+/*================== Start Header ================*/
+.header-wrapper{
+    position: relative;
+    z-index: 999;
+}
+.header-wrapper .logo a {
+    display: inline-block;
+}
+/*---- Header Top ----*/
+.tagline {
+  display: inline-block;
+  position: relative;
+  top: 10px;
+  font-style: italic;
+}
+#header-top [class^="col-"], #header-top [class*="col-"] {
+    min-height: 0;
+}
+.header-top-2{
+    text-align: right;
+}
+#header-top ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#header-top ul li{
+    display: inline-block;
+}
+#header-top ul ul{
+    display: none;
+}
+/*---- End Header Top ----*/
+/*---- End Main Header ----*/
+/*---- Admin Bar ----*/
+.admin-bar .cs-sticky.fixed.fixed-transition {
+    top: 32px !important;
+}
+.admin-bar .sticky-header.fixed {
+    top: 32px;
+}
+/*---- End Sticky Header ----*/
+
+/*---- Start Social Top ----*/
+ul.socialTop {
+    padding: 9px 0 !important;
+}
+ul.socialTop li + li {
+    margin-left: 15px;
+}
+ul.socialTop li a i{
+    color: #fff;
+    font-size: 21px;
+    line-height: 25.2px;
+}
+/*---- End Social Top ----*/
+
+/*---- Start Feature Box ----*/
+.feature-box {
+    padding: 0;
+    margin: 0;
+}
+/*---- Start Feature Box ----*/
+
+/*================== End Header ================*/
+
+.home .entry-header {
+    display: none;
+}
+.home #primary {
+    padding: 0 !important;
+}
+
+
+/*================== Start Main Body ================*/
+/*---- Start Typography ----*/
+h3.title-main-body {
+    color: #333;
+    text-transform: uppercase;
+    line-height: normal;
+    padding-bottom: 7px;
+}
+.col1, .col2 {
+    float: left;
+}
+.radioType, .checkType {
+    margin: 20px 0 30px 0;
+    padding: 0;
+}
+.radioType li, .checkType li {
+    display: inline-block;
+    color: #372f2b;
+    font-weight: 700;
+}
+.radioType li:first-child, .checkType li:first-child {
+    min-width: 90px;
+}
+.radioType input[type="radio"], .checkType input[type="checkbox"] {
+    z-index: 999;
+    position: relative;
+    opacity: 0;
+    height: 20px;
+    width: 20px;
+    top: 8px;
+    right: -25px;
+    cursor: pointer;
+}
+.radioType input[type="radio"] + label, .checkType input[type="checkbox"] + label {
+    cursor: pointer;
+    line-height: 24px;
+    padding-left: 38px;
+    padding-top: 3px;
+    position: relative;
+    text-transform: capitalize;
+}
+.radioType input[type="radio"] + label:before, .checkType input[type="checkbox"] + label:before {
+    border: 1px solid #E4E4E4;
+    border-radius: 50%;
+    content: "";
+    height: 30px;
+    left: 0px;
+    position: absolute;
+    top: 0;
+    width: 30px;
+    background: #fff;
+    background-image: linear-gradient(top, #fff 0%, #f5f5f5 100%);
+    background-image: -o-linear-gradient(top, #fff 0%, #f5f5f5 100%);
+    background-image: -moz-linear-gradient(top, #fff 0%, #f5f5f5 100%);
+    background-image: -webkit-linear-gradient(top, #fff 0%, #f5f5f5 100%);
+    background-image: -ms-linear-gradient(top, #fff 0%, #f5f5f5 100%);
+    background-image: -webkit-gradient(top, #fff 0%, #f5f5f5 100%);
+    -webkit-box-shadow: 0 1px 3px #e5e5e5;
+    -moz-box-shadow: 0 1px 3px #e5e5e5;
+    box-shadow: 0 1px 3px #e5e5e5;
+}
+.radioType input[type="radio"] + label:after, .checkType input[type="checkbox"] + label:after {
+    border-radius: 50px;
+    content: "";
+    height: 16px;
+    left: 7px;
+    opacity: 1;
+    position: absolute;
+    top: 6.5px;
+    width: 16px;
+}
+.checkType input[type="checkbox"] + label:before {
+    -webkit-border-radius: 0px;
+       -moz-border-radius: 0px;
+        -ms-border-radius: 0px;
+         -o-border-radius: 0px;
+            border-radius: 0px;
+}
+.checkType input[type="checkbox"] + label:after {
+    content: "\f00c";
+    font-family: FontAwesome;
+    font-size: 16px;
+    top: 3.5px;
+    color: transparent;
+}
+/*---- End Typography ----*/
+
+/*---- Start Style Post Page ----*/
+.post.categories_list_post {
+    margin-bottom: 70px;
+}
+
+
+/*** End Page Category ***/
+/**COMENT FORM**/
+#commentform {
+    background: #f5f5f5 !important;
+    color: #888888;
+    padding: 25px;
+    margin: 0 0 25px;
+}
+#commentform input[type="text"], #commentform textarea {
+    border: 1px solid #e9e9e9;
+    font-size: 14px;
+    width: 100%;
+    -webkit-border-radius: 0px;
+       -moz-border-radius: 0px;
+        -ms-border-radius: 0px;
+         -o-border-radius: 0px;
+            border-radius: 0px;
+}
+#commentform .form-submit {
+    text-align: right;
+    margin-top: 20px;
+}
+#commentform .form-allowed-tags {
+    display: none;
+}
+#comments {
+    margin-top: 50px;
+    border-top: 1px solid #e9e9e9;
+    padding-top: 50px;
+}
+#comments .comment-list {
+    padding: 0;
+    margin-bottom: 50px;
+}
+#comments .comment-list li {
+    position: relative;
+    background: #f5f5f5;
+    padding: 20px;
+}
+#comments .comment-list li + li {
+    margin-top: 18px;
+}
+.comment-author .says {
+    display: none;
+}
+#comments .comment-list .reply {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+#comments .comment-list .comment-meta {
+    padding-left: 100px;
+    margin-bottom: 5px;
+}
+.comment-author img.avatar {
+    width: 80px;
+    height: 80px;
+    max-width: 80px;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+         -o-border-radius: 50%;
+            border-radius: 50%;
+}
+h3.comments-title, h3#reply-title {
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+.comment-body .comment-meta + p {
+    padding-left: 100px;
+}
+.comment-body .comment-author {
+    display: table;
+}
+.comment-body .fn, .comment-body .avatar{
+    display: table-cell;
+    vertical-align: middle;
+}
+.comment-body .fn {
+    padding-left: 100px;
+    font-size: 12px;
+    font-family: 'Novecentowide-Bold';
+    text-transform: uppercase;
+    line-height: normal;
+    display: block;
+}
+.comment-body .fn a {
+    color: #333;
+}
+/*---- Navigation ----*/
+.navigation.pos {
+    margin-top: 30px;
+}
+.navigation .nav-previous, .navigation .nav-next {
+    width: 50%;
+    float: left;
+}
+.navigation .nav-previous i {
+    padding-right: 18px;
+}
+.navigation .nav-next {
+    text-align: right;
+    float: right;
+}
+.navigation .nav-next i {
+    padding-left: 18px;
+}
+.cs-navigation {
+    text-align: center;
+    margin: 20px 0 40px 0;
+}
+.cs-navigation .prev.page-numbers,
+.cs-navigation .next.page-numbers {
+    font-size: 0;
+    text-align: center;
+}
+.cs-navigation .prev.page-numbers:before,
+.cs-navigation .next.page-numbers:after {
+    text-indent: 0;
+    font-family: FontAwesome;
+    text-indent: 0;
+    font-size: 18px;
+    display: inline-block;
+}
+.cs-navigation .prev.page-numbers:before {
+    content: "\f104";
+}
+.cs-navigation .next.page-numbers:after {
+    content: "\f105";
+}
+.cs-navigation .page-numbers {
+    background: #f5f5f5;
+    font-family: "Novecentowide-Normal";
+    font-size: 16px;
+    line-height: 26px;
+    padding: 0;
+    display: inline-block;
+    height: 45px;
+    width: 45px;
+    text-align: center;
+    line-height: 45px;
+    float: left;
+    margin: 0 5px;
+}  
+.cs-navigation .page-numbers:hover,
+.cs-navigation .prev.page-numbers:hover:before,
+.cs-navigation .next.page-numbers:hover:after,
+.cs-navigation .page-numbers.current {
+    color: #fff;
+}
+/** blockquote **/
+.blockMargin {
+    margin: 30px 0;
+}
+blockquote {
+    padding: 20px;
+    font-size: 14px;
+    line-height: 24px;
+    margin-left: 90px;
+    background: #f5f5f5;
+}
+
+/*---- End Style Post Page ----*/
+
+/*---- Start Get The Shortcode ----*/
+.getcode {
+    background-color: #f5f5f5;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 4px;
+    display: block;
+    font-size: 13px;
+    line-height: 20px;
+    margin: 0 0 10px;
+    padding: 9.5px;
+}
+/*---- End Get The Shortcode ----*/
+
+/*---- START FROM THE BLOG ----*/
+
+/*---- END FROM THE BLOG ----*/
+
+
+/****** Start carousel latest work ******/
+.ww-carousel-latest-work .ww-carousel-item {
+    margin-bottom: 0;
+}
+.ww-carousel-latest-work .ww-carousel-item img.attachment-post-thumbnail {
+    min-height: 203px;
+}
+.ww-carousel-latest-work .ww-carousel-header {
+    position: relative;
+}
+.ww-carousel-latest-work .ww-carousel-details:before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: transparent;
+    display: block;
+    -webkit-transition: all 0.2s linear 0s;
+    -moz-transition: all 0.2s linear 0s;
+    -o-transition: all 0.2s linear 0s;
+    -ms-transition: all 0.2s linear 0s;
+    transition: all 0.2s linear 0s;
+}
+.ww-carousel-latest-work .ww-carousel-details .ww-read-more a {
+    color: #fff !important;
+    font-size: 55px;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    display: block;
+    height: 50px;
+    width: 50px;
+    text-align: center;
+    line-height: 50px;
+    margin: auto;
+    right: 0;
+    left: 0;
+    opacity: 0;
+    -webkit-transition: all 0.2s linear 0s;
+    -moz-transition: all 0.2s linear 0s;
+    -o-transition: all 0.2s linear 0s;
+    -ms-transition: all 0.2s linear 0s;
+    transition: all 0.2s linear 0s;
+}
+.ww-carousel-latest-work.style-2 .ww-carousel-details .ww-read-more a {
+    -webkit-transition: all 0.5s linear 0s;
+    -moz-transition: all 0.5s linear 0s;
+    -o-transition: all 0.5s linear 0s;
+    -ms-transition: all 0.5s linear 0s;
+    transition: all 0.5s linear 0s;
+    -webkit-transform:translateY(-300%);
+       -moz-transform:translateY(-300%);
+        -ms-transform:translateY(-300%);
+         -o-transform:translateY(-300%);
+            transform:translateY(-300%);
+}
+.ww-carousel-latest-work .ww-carousel-item:hover .ww-carousel-details .ww-read-more a {
+    font-size: 65px;
+    opacity: 1;
+    -webkit-transform:translateY(0%);
+       -moz-transform:translateY(0%);
+        -ms-transform:translateY(0%);
+         -o-transform:translateY(0%);
+            transform:translateY(0%);
+}
+.ww-carousel-latest-work.style-1, .ww-carousel-latest-work.style-2 {
+    position: relative;
+}
+.ww-carousel-latest-work.style-1 .ww-nav, .ww-carousel-latest-work.style-2 .ww-nav {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+/**** Nav carousel ****/
+.ww-nav ul {
+    padding: 0;
+    margin: 0;
+}
+.ww-nav ul li {
+    display: inline-block;
+}
+.ww-nav ul li a {
+    outline: none;
+}
+.ww-nav ul li i {
+    color: #113a52;
+    font-size: 20px;
+}
+/****** End carousel latest work ******/
+
+/****** Start fancy box ******/
+
+.ww-fancy-box.fancy-box-style-1 .ww-fancy-box-title i {
+    display: block;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 35px;
+    height: 100px;
+    line-height: 100px;
+    margin-bottom: 30px;
+    position: relative;
+    width: 100px;
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+         -o-border-radius: 50%;
+            border-radius: 50%;
+    -webkit-transition: all 0.3s ease 0s;
+       -moz-transition: all 0.3s ease 0s;
+         -o-transition: all 0.3s ease 0s;
+        -ms-transition: all 0.3s ease 0s;
+            transition: all 0.3s ease 0s;
+}
+.ww-fancy-box.fancy-box-style-1 .ww-fancy-box-title i:after {
+    background: none repeat scroll 0 0 rgba(0, 0, 0, 0);
+    box-sizing: content-box;
+    content: "";
+    height: 102px;
+    left: 0;
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    width: 102px;
+    z-index: -1;
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+         -o-border-radius: 50%;
+            border-radius: 50%;
+    -webkit-transition: all 0.3s ease 0s;
+       -moz-transition: all 0.3s ease 0s;
+         -o-transition: all 0.3s ease 0s;
+        -ms-transition: all 0.3s ease 0s;
+            transition: all 0.3s ease 0s;
+    -webkit-transform: scale(1.3);
+       -moz-transform: scale(1.3);
+        -ms-transform: scale(1.3);
+         -o-transform: scale(1.3);
+            transform: scale(1.3);
+}
+.ww-fancy-box.fancy-box-style-1:hover .ww-fancy-box-title i:after {
+    opacity: 1;
+    left: -1px;
+    top: -1px;
+    -webkit-transform: scale(1);
+       -moz-transform: scale(1);
+        -ms-transform: scale(1);
+         -o-transform: scale(1);
+            transform: scale(1);
+}
+.ww-fancy-box .ww-fancy-box-title .ww-title-main {
+    line-height: 1;
+    display: block;
+}
+.ww-fancy-box.fancy-box-style-1 .ww-fancy-box-title,
+.ww-fancy-box.fancy-box-style-1 .ww-fancy-box-content {
+    text-align: center;
+}
+.ww-fancy-box a.read-more-link, .readmore.main-color,
+.csbody a.read-more-link {
+    -webkit-transition: all 0.3s ease 0s;
+       -moz-transition: all 0.3s ease 0s;
+         -o-transition: all 0.3s ease 0s;
+        -ms-transition: all 0.3s ease 0s;
+            transition: all 0.3s ease 0s;
+}
+/****** End fancy box ******/
+
+/*---- START BLOCK PARALLAX ----*/
+.ww-custom.stripe-parallax-bg {
+    position: relative;
+    -webkit-background-size: cover;
+       -moz-background-size: cover;
+         -o-background-size: cover;
+            background-size: cover;
+}
+.ww-custom.stripe-parallax-bg .ww-parallax-bg {
+    height: 100%;
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 100%;
+}
+
+.bg-overlay-preset, .bg-overlay-video, .overlay-secondary-color {
+    position: relative;
+}
+.wpb_row.vc_row-fluid.bg-overlay-preset:before,
+.wpb_row.vc_row-fluid.overlay-secondary-color:before, 
+.wpb_row.vc_row-fluid.bg-overlay-video:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    content: "";
+    z-index: 100;
+    display: block;
+}
+.wpb_row.vc_row-fluid.bg-overlay-preset .container, 
+.wpb_row.vc_row-fluid.overlay-secondary-color .container, 
+.wpb_row.vc_row-fluid.bg-overlay-video .container {
+    position: relative;
+    z-index: 101;
+}
+.wpb_row.vc_row-fluid.bg-overlay-video:before {
+    background: rgba(255, 255, 255, 0.8);
+}
+
+/*---- END BLOCK PARALLAX ----*/
+
+/** Style Page Gallery ***/
+.esg-grid .eg-buchanan-container {
+    background-color: rgba(0, 0, 0, 0.6);
+}
+/*---- Edit Post ----*/
+.entry-footer .edit-link {
+    display: none;
+}
+
+/***** Start Page Blog Style ****/
+.cs-blog .cs-blog-header h3.cs-blog-title {
+    margin: 15px 0 10px 0;
+    line-height: 1;
+}
+.cs-blog .cs-blog-header h3.cs-blog-title a {
+    font-size: 26px;
+    -webkit-transition: all 300ms linear 0ms;
+       -moz-transition: all 300ms linear 0ms;
+         -o-transition: all 300ms linear 0ms;
+        -ms-transition: all 300ms linear 0ms;
+            transition: all 300ms linear 0ms;
+}
+.cs-blog .cs-blog-header .cs-blog-media {
+    position: relative;
+    margin-bottom: 20px;
+}
+.cs-blog .cs-blog-header .cs-blog-media a.bx-prev, .cs-blog .cs-blog-header .cs-blog-media a.bx-next {
+    position: absolute;
+    top: 45%;
+    left: 17px;
+    color: #fff;
+    font-size: 22px;
+    outline: none;
+}
+.cs-blog .cs-blog-header .cs-blog-media a.bx-next {
+    left: inherit;
+    right: 17px;
+}
+.cs-blog .cs-blog-thumbnail {
+    margin-bottom: 20px;
+}
+.cs-blog .cs-blog-thumbnail img {
+    width: 100%;
+}
+.cs-blog .cs-blog-info ul {
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ddd;
+}
+.cs-blog .cs-blog-info li {
+    display: inline-block;
+    margin: 0;
+}
+.cs-blog .cs-blog-info li + li {
+    padding-left: 16px;
+    margin-left: 16px;
+    line-height: 1;
+    font-weight: normal;
+}
+.cs-blog .cs-blog-info li i {
+    margin-right: 5px;
+}
+.cs-blog .cs-blog-content,
+.cs-blog .readmore {
+    margin-top: 20px;
+}
+.cs-blog-quote {
+    background: #f5f5f5;
+    padding: 30px;
+}
+.cs-blog .cs-blog-quote .cs-blog-info ul {
+    border-bottom: none;
+}  
+.cs-blog .cs-blog-quote .icon-left,
+.cs-blog .cs-blog-quote .icon-right {
+    width: 47px;
+    height: 34px;
+}
+.cs-blog .cs-blog-quote .icon-left {
+    background: url(../images/icon-quote-left.html) no-repeat center center;
+}
+.cs-blog .cs-blog-quote .icon-right {
+    background: url(../images/icon-quote-right.html) no-repeat center center;
+}
+.cs-blog .cs-blog-quote .cs-blog-info ul {
+    text-align: center;
+}
+.cs-blog .cs-blog-quote .cs-blog-content {
+    font-size: 18px;
+    font-family: 'Novecentowide-Bold';
+    line-height: 26px;
+    text-transform: uppercase;
+    margin: 0 0 40px;
+}
+.cs-content-text {
+    padding: 0 20px;
+}
+/***** End Page Blog Style ****/
+
+/* ==========================================================================
+    Start Meet The Team
+   ========================================================================== */
+.cs-header {
+    margin-bottom: 30px;
+}
+.cs-header.cs-team-header {
+    margin-bottom: 40px;
+}
+.cs-team {
+    text-align: center;
+}
+.cs-team .cs-team-featured-img {
+    width: 100%;
+    text-align: center;
+    display: inline-block;
+    position: relative;
+    margin-bottom: 20px !important;
+}
+.cs-team .cs-team-featured-img img {
+    max-width: 160px;
+    height: 160px;
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+         -o-border-radius: 50%;
+            border-radius: 50%;
+}
+.cs-team .cs-team-featured-img .circle-border {
+    position: absolute;
+    height: 100%;
+    width: 100%;
+    display: block;
+    border: 1px solid transparent;
+    top: 0;
+    left: 0;
+    border-radius: 100%;
+    -webkit-transition: all 255ms cubic-bezier(0.5, -0.7, 0.67, 0.7);
+       -moz-transition: all 255ms cubic-bezier(0.5, -0.7, 0.67, 0.7);
+         -o-transition: all 255ms cubic-bezier(0.5, -0.7, 0.67, 0.7);
+        -ms-transition: all 255ms cubic-bezier(0.5, -0.7, 0.67, 0.7);
+            transition: all 255ms cubic-bezier(0.5, -0.7, 0.67, 0.7);
+    -webkit-transform: scale(1);
+       -moz-transform: scale(1);
+        -ms-transform: scale(1);
+         -o-transform: scale(1);
+            transform: scale(1);
+}
+.cs-team .cs-team-featured-img:hover .circle-border {
+    -webkit-transform: scale(1.12);
+       -moz-transform: scale(1.12);
+        -ms-transform: scale(1.12);
+         -o-transform: scale(1.12);
+            transform: scale(1.12);
+}
+.cs-team-content h3.cs-team-title {
+    margin: 0;
+    line-height: 1;
+}
+.cs-team-content .cs-team-category {
+    margin: 8px 0;
+    font-size: 12px;
+}
+.cs-team-content .cs-team-description {
+    padding-bottom: 10px;
+    margin: 0 0 12px;
+}
+.cs-team-content .cs-team-social a + a {
+    margin-left: 10px;
+}
+.cs-team-content .cs-team-social a i {
+    font-size: 20px;
+    color: #ddd;
+    -webkit-transition: all 300ms linear 0ms;
+       -moz-transition: all 300ms linear 0ms;
+         -o-transition: all 300ms linear 0ms;
+        -ms-transition: all 300ms linear 0ms;
+            transition: all 300ms linear 0ms;
+}
+.cs-team-content .cs-team-social a:hover i {
+    -webkit-transform: scale(1.05);
+       -moz-transform: scale(1.05);
+        -ms-transform: scale(1.05);
+         -o-transform: scale(1.05);
+            transform: scale(1.05);
+}
+.cs-team-wrap {
+    margin-bottom: 50px;
+}
+article.team  {
+    position: relative;
+}
+.cs-item-team .cs-team-meta {
+    padding: 28px 0 0 28px;
+}
+.cs-item-team .cs-team-meta h3{
+    font-size: 22px;
+    line-height: 26px;
+}
+.cs-item-team .cs-team-details {
+    position: inherit;
+}
+.cs-item-team .cs-team-meta .cs-team-description {
+    color: #fff;
+    margin-bottom: 25px;
+}
+.cs-item-team .cs-team-social {
+    bottom: 0;
+    position: absolute;
+    max-width: 240px;
+    width: 100%;
+    margin-bottom: 20px;
+}
+/* ==========================================================================
+    End Meet The Team
+========================================================================== */
+
+/* ==========================================================================
+    Start Portfolio
+   ========================================================================== */
+.cs-portfolio-item .cs-portfolio-featured-img {
+    margin-bottom: 20px;
+   }
+.cs-portfolio-item .cs-portfolio-details {
+    padding-right: 0;
+}
+.cs-portfolio-item .cs-portfolio-details .cs-portfolio-meta {
+    padding: 28px;
+}
+.cs-portfolio-item .cs-portfolio-details .cs-portfolio-meta h3 {
+    font-size: 22px;
+    line-height: 26px;
+}
+.cs-portfolio-item .cs-portfolio-media {
+    padding-left: 0;
+}
+.cs-portfolio-item .cs-portfolio-description {
+    color: #fff;
+    margin-bottom: 50px;
+}
+.cs-portfolio-item .cs-portfolio-list-details {
+    padding: 0;
+    margin-bottom: 90px;
+}
+.cs-portfolio-item .cs-portfolio-list-details li {
+    color: #fff;
+    margin-bottom: 30px;
+}
+.cs-portfolio-item .cs-portfolio-list-details li h5,
+.cs-portfolio-item h5.title-pt {
+    margin: 0;
+    font-size: 16px;
+    line-height: 26px;
+}
+.cs-portfolio-item h5.title-pt {
+    margin-bottom: 30px;
+}
+.cs-portfolio-item .cs-portfolio-list-details li a {
+    color: #fff !important;
+    -webkit-transition: all 0.3s ease 0s;
+       -moz-transition: all 0.3s ease 0s;
+         -o-transition: all 0.3s ease 0s;
+        -ms-transition: all 0.3s ease 0s;
+            transition: all 0.3s ease 0s;
+}
+.cs-portfolio-item .cs-portfolio-list-details li i {
+    color: #fff;
+    margin-right: 5px;
+}
+/* ==========================================================================
+    Start Carousel Client
+   ========================================================================== */
+.ww-carousel-client {
+    position: relative;
+}
+.ww-carousel-client li.prev {
+    left: -30px;
+    position: absolute;
+    top: 45%;
+}
+.ww-carousel-client li.next {
+    position: absolute;
+    right: -30px;
+    top: 45%;
+}
+
+/* ==========================================================================
+    End Carousel Client
+   ========================================================================== */
+
+/* ==========================================================================
+   Pricing Styles
+========================================================================== */
+.cs-pricing .cs-pricing-item .cs-pricing-container {
+    border: 1px solid #e9e9e9;
+    margin-left: -1px;
+    background: #fff;
+}
+.cs-pricing .cs-pricing-item h3.cs-pricing-title {
+    color: #fff;
+    font-size: 19px;
+    font-weight: normal;
+    padding: 10px 0 8px 0;
+    line-height: 25px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    margin: 0;
+    letter-spacing: 0;
+}
+.cs-pricing .cs-pricing-item .cs-pricing-description .jmPrice .number {
+    font-size: 65px;
+    font-weight: 700;
+    line-height: 1em;
+    padding: 0 3px;
+    vertical-align: middle;
+}
+.cs-pricing .cs-pricing-item .cs-pricing-description .jmPrice {
+    padding: 30px 0;
+    background: #f5f5f5;
+}
+.cs-pricing .cs-pricing-item.cs-pricing-image .cs-pricing-description .jmPrice{
+    background-size: cover;
+    color: #fff;
+}
+.cs-pricing .cs-pricing-item.cs-pricing-image  .cs-pricing-container {
+     border: 1px solid #c2c2c2;
+     -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+      -ms-box-shadow: none;
+       -o-box-shadow: none;
+          box-shadow: none;
+}
+
+.cs-pricing .cs-pricing-item .cs-pricing-description .jmPrice small {
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: normal;
+    position: relative;
+    vertical-align: bottom;
+}
+.cs-pricing .cs-pricing-item .cs-pricing-description .loaded dd {
+     padding: 17px;
+    font-size: 15px;
+    border-bottom: 1px solid #f5f5f5;
+}
+.cs-pricing .cs-pricing-item .cs-pricing-button {
+    padding: 25px 0;
+    background: #f5f5f5;
+}
+.cs-pricing .cs-pricing-item.cs-pricing-image .cs-pricing-button {
+    background: #e9e9e9;
+}
+.cs-pricing .cs-pricing-item .cs-pricing-button a {
+    text-transform: uppercase;
+    -webkit-transition: all 300ms linear 0ms;
+       -moz-transition: all 300ms linear 0ms;
+         -o-transition: all 300ms linear 0ms;
+        -ms-transition: all 300ms linear 0ms;
+            transition: all 300ms linear 0ms;
+}
+.cs-pricing .cs-pricing-item.cs-pricing-feature {
+    margin-top: -25px;
+}
+.cs-pricing .cs-pricing-item.cs-pricing-feature .cs-pricing-container {
+    -webkit-box-shadow: 0px 1px 5px #e8e8e8;
+       -moz-box-shadow: 0px 1px 5px #e8e8e8;
+        -ms-box-shadow: 0px 1px 5px #e8e8e8;
+         -o-box-shadow: 0px 1px 5px #e8e8e8;
+            box-shadow: 0px 1px 5px #e8e8e8;
+            position: relative;
+}
+.cs-pricing .cs-pricing-item.cs-pricing-feature.cs-pricing-image  .cs-pricing-container {
+    -webkit-box-shadow: none;
+     -moz-box-shadow: none;
+      -ms-box-shadow: none;
+       -o-box-shadow: none;
+          box-shadow: none;
+}
+.cs-pricing .cs-pricing-item.cs-pricing-feature .cs-pricing-container:before {
+    content: "best value";
+    position: absolute;
+    top: 10px;
+    right: -8px;
+    text-transform: uppercase;
+    color: #fff;
+    width: 60px;
+    font-size: 13px;
+    font-weight: 700;
+    display: block;
+    line-height: 13px;
+    z-index: 2;
+    -webkit-transform: rotate(45deg);
+       -moz-transform: rotate(45deg);
+        -ms-transform: rotate(45deg);
+         -o-transform: rotate(45deg);
+            transform: rotate(45deg);
+}
+.cs-pricing .cs-pricing-item.cs-pricing-feature .cs-pricing-container:after {
+    content: "";
+    height: 0;
+    width: 0;
+    border-width: 36px;
+    border-style: solid;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 1;
+}
+
+.cs-pricing .cs-pricing-item.cs-pricing-feature h3.cs-pricing-title {
+    padding: 14px 0 12px 0;
+}
+.cs-pricing .cs-pricing-item.cs-pricing-feature .cs-pricing-button {
+    padding: 32px 0;
+}
+.cs-pricing .cs-pricing-item.cs-pricing-feature .cs-pricing-description .loaded dd {
+    padding: 20px 0;
+}
+/* ==========================================================================
+    End Pricing Styles
+========================================================================== */
+
+
+
+/* ==========================================================================
+    Start Testimonial Styles
+========================================================================== */
+
+.cs-testimonial .cs-testimonial-content-main {
+    text-align: center;
+}
+.cs-testimonial .cs-testimonial-description .cs-testimonial-text {
+    background: rgba(255, 255, 255, 0.9);
+    border-radius: 10px;
+    margin-bottom: 0;
+    padding: 15px;
+    position: relative;
+    text-align: left;
+}
+.cs-testimonial .cs-testimonial-description .ArrowWrap .arrow {
+    border-color: rgba(255, 255, 255, 0.9) rgba(255, 255, 255, 0) rgba(255, 255, 255, 0);
+    border-image: none;
+    border-right: 20px solid rgba(255, 255, 255, 0);
+    border-style: solid;
+    border-width: 20px 20px 0;
+    display: block;
+    height: 0;
+    margin: 0 auto 20px;
+    width: 0;
+}
+
+.cs-testimonial .cs-testimonial-featured-img img {
+    display: inline-block;
+    margin-bottom: 20px;
+    max-width: 100px;
+    -webkit-border-radius: 50%;
+       -moz-border-radius: 50%;
+        -ms-border-radius: 50%;
+         -o-border-radius: 50%;
+            border-radius: 50%;
+    -webkit-transition: all 180ms linear 0ms;
+       -moz-transition: all 180ms linear 0ms;
+         -o-transition: all 190ms linear 0ms;
+        -ms-transition: all 180ms linear 0ms;
+            transition: all 180ms linear 0ms;
+}
+.cs-testimonial-content .cs-testimonial-title {
+    text-transform: uppercase;
+    font-size: 15px;
+    line-height: 1;
+    margin: 0 0 3px;
+}
+.cs-testimonial-content .cs-testimonial-category {
+    color: #fff;
+}
+/* ==========================================================================
+    Start Testimonial Styles
+========================================================================== */
+
+/* ==========================================================================
+    Start Primary Styles
+========================================================================== */
+#primary {
+
+}
+/* ==========================================================================
+    End Primary Styles
+========================================================================== */
+
+
+/* ==========================================================================
+    Start Sidebar Styles
+========================================================================== */
+.primary-sidebar .wg-title {
+    border-bottom: 1px solid #e9e9e9;
+}
+.tagcloud {
+    overflow: hidden;
+}
+.tagcloud a {
+    background: #f5f5f5;
+    display: inline-block;
+    padding: 10px;
+    position: relative;
+    margin-bottom: 10px;
+    float: left;
+    line-height: 1;
+    border-radius: 5px;
+}
+.tagcloud a:before {
+    content: "\f02b";
+    font-family: FontAwesome;
+    margin-right: 10px;
+}
+.tagcloud a + a {
+    margin-left: 12px;
+}
+.cs_tags {
+    border-bottom: 1px solid #e9e9e9;
+    padding: 30px 0;
+}
+.cs_tags h4 {
+    float: left;
+    margin: 0 10px 0 0;
+    line-height: 35px;
+}
+.cs_tags .tagcloud a {
+    margin-bottom: 0;
+}
+.widget_categories ul, .widget_archive ul, .widget_meta ul {
+    margin: 0;
+    padding: 0;
+}
+.widget_categories ul li.cat-item a, .widget_archive ul li a, .widget_meta ul li a {
+    display: block;
+    line-height: 22px;
+    padding: 5px 0;
+    display: inline;
+    position: relative;
+    outline: none;
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+.widget_categories ul li.cat-item a:hover, .widget_archive ul li a:hover, .widget_meta ul li a:hover {
+    padding-left: 10px;
+}
+.widget_calendar #wp-calendar {
+    width: 100%;
+}
+.widget_calendar #wp-calendar caption {
+    font-family: 'OpenSans-Bold';
+    text-transform: uppercase;
+    margin: 0 0 10px;
+}
+.widget_calendar #wp-calendar th {
+    font-family: OpenSans-Bold;
+    font-weight: normal;
+    text-align: center;
+}
+.widget_calendar #wp-calendar th ,
+.widget_calendar #wp-calendar tbody td {
+    text-align: center;
+    padding: 5px 0;
+}
+.widget_calendar #wp-calendar tbody td:hover {
+    color: #fff;
+}
+.widget_calendar #wp-calendar tfoot #prev, 
+.widget_calendar #wp-calendar tfoot #next {
+    display: none;
+} 
+/**** Search Form *****/
+.searchform {
+    position: relative;
+    margin-bottom: 22px;
+}
+.searchform:before {
+    position: absolute;
+    top: 4px;
+    right: 14px;
+    content: "\f002";
+    font-family: FontAwesome;
+    font-size: 14px;
+    color: #ccc;
+    transition: all .3s linear 0s;
+}
+.searchform:hover:before {
+    color: #69bd43;
+}
+.searchform .screen-reader-text {
+    display: none;
+}
+.searchform input[type="text"] {
+    height: 37px;
+    border-radius: 3px;
+    margin: 0;
+    -webkit-box-shadow: 1px 1px 2px 0 #ddd;
+    -moz-box-shadow: 1px 1px 2px 0 #ddd;
+    -o-box-shadow: 1px 1px 2px 0 #ddd;
+    box-shadow: 1px 1px 2px 0 #ddd;
+}
+.searchform input[type="submit"] {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 37px;
+    height: 37px;
+    opacity: 0;
+}
+/***** Tabs Sidebar *****/
+.primary-sidebar .widget_ww_news_tabs {
+    border: none !important;
+}
+
+.tab-holder {
+    padding: 0;
+}
+.tab-holder ul.nav {
+    border: none;
+}
+.tab-holder ul.nav li {
+
+}
+.tab-holder ul.nav li a {
+    font-size: 14px;
+    line-height: 1;
+    color: #333;
+    text-transform: uppercase;
+    padding: 15px 8px;
+    border: 1px solid #e9e9e9;
+    border-bottom: none;
+    outline: none;
+    background: #f5f5f5;
+      -webkit-border-radius: 0px;
+         -moz-border-radius: 0px;
+              border-radius: 0px;
+}
+.tab-holder ul.nav li.active a, .tab-holder ul.nav li:hover a {
+    background: #ffffff;
+    border-bottom: 1px solid transparent;
+}
+.tab-content {
+    border: 1px solid #e9e9e9;
+}
+.cs-popular {
+    padding: 20px;
+}
+.ww-recent-post .cs-popular {
+    padding: 0 !important;
+}
+.cs-popular li {
+    display: block;
+    padding: 0px;
+    border-bottom: 1px solid #e9e9e9;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+.cs-popular li:last-child {
+    border-bottom: none;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+.cs-popular .cs-meta img {
+    width: 80px;
+    height: 80px;
+    max-width: 80px;
+}
+.cs-popular .cs-meta .date {
+    background: #f5f5f5;
+    font-size: 11px;
+    display: block;
+    text-align: center;
+    padding: 7px;
+    line-height: normal;
+}
+.cs-popular .cs-meta .date span {
+    display: block;
+}
+.cs-popular .cs-details {
+    padding-left: 13px;
+}
+.cs-popular .cs-details > h4 {
+    font-size: 14px;
+    color: #333;
+    text-transform: uppercase;
+    letter-spacing: 0;
+    line-height: 20px;
+}
+.cs-popular .cs-details .readmore {
+    font-size: 13px;
+    margin-top: 10px;
+}
+.cs-popular .cs-details .description {
+    font-size: 13px;
+    color: #a0a0a0;
+    line-height: 20px;
+}
+/** Comment **/
+.sh-list-comment {
+    padding: 20px;
+    margin: 0;
+}
+.sh-list-comment li {
+    border-bottom: 1px solid #e9e9e9;
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+}
+.sh-list-comment li:last-child {
+    border-bottom: none;
+    padding-bottom: 0px;
+    margin-bottom: 0px;
+}
+.sh-list-comment .image img {
+    width: 60px;
+    height: 60px;
+    max-width: 60px;
+    -webkit-border-radius: 50%;
+         -moz-border-radius: 50%;
+              border-radius: 50%;
+}
+.sh-list-comment .post-holder {
+    font-size: 13px;
+    padding-left: 15px;
+}
+.sh-list-comment .post-holder a {
+    color: #A0A0A0;
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+
+/* ==========================================================================
+    End Sidebar Styles
+========================================================================== */
+
+/* ==========================================================================
+    Start Item Parallax Styles
+========================================================================== */
+.item-parallax-slider h2 {
+    background: #fff;
+    color: #000;
+    font-size: 35px;
+    margin: 0 auto;
+    max-width: 75%;
+    opacity: 0.8;
+    padding: 20px;
+    text-align: center;
+}
+/* ==========================================================================
+    End Item Parallax Styles
+========================================================================== */
+
+/***** Social *****/
+.cs-social {
+    padding: 0;
+    margin: 0;
+}
+.cs-social li {
+    display: inline-block;
+}
+.cs-social li + li {
+    margin-left: 5px;
+}
+.cs-social li a i {
+    color: #fff;
+    -webkit-transition: all 300ms linear 0ms;
+       -moz-transition: all 300ms linear 0ms;
+         -o-transition: all 300ms linear 0ms;
+        -ms-transition: all 300ms linear 0ms;
+            transition: all 300ms linear 0ms;
+}
+/*================== End Main Body ================*/
+/**** VC ***/
+.wpb_gmaps_widget .wpb_wrapper {
+    padding: 0;
+}
+/*================== Start Footer ================*/
+/*---- Start Footer Top ----*/
+#footer-top [id^="widget-"], #footer-top  [id*="widget-"] {
+    margin-top: 25px;
+}
+#footer-top [id^="widget-"]:first-child, #footer-top  [id*="widget-"]:first-child {
+    margin-top: 0;
+}
+.tweets-container ul {
+    padding: 0;
+}
+.tweets-container ul li {
+    border-bottom: 1px solid #e9e9e9;
+    margin-bottom: 20px;
+    padding: 0 0 20px 35px;
+    position: relative;
+}
+.tweets-container ul li:before {
+    content: "\f099";
+    font-family: FontAwesome;
+    font-size: 21px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.tweets-container ul li:last-child {
+    border-bottom: none;
+}
+.tweets-container ul li .jtwt_tweet_text {
+    margin: 0;
+}
+.tweets-container ul li .jtwt_date {
+    display: block;
+    text-align: right;
+}
+.tweets-container ul li a {
+    color: #8C8989;
+}
+
+/*** Get Touch ***/
+.getTouch, .getTouchSidebar {
+    padding: 0;
+    margin: 0;
+}
+.getTouch > li, .getTouchSidebar > li {
+    line-height: 20px;
+    margin-bottom: 10px;
+    padding: 0 0 0 35px;
+    position: relative;
+}
+.getTouch > li i {
+    font-size: 16px;
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+.getTouch > li a:hover {
+    color: #fff !important;
+}
+.getTouchSidebar > li {
+    padding-left: 85px;
+    margin: 0 0 20px;
+}
+.getTouchSidebar > li i {
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-style: normal;
+}
+.connect-width {
+    padding: 0;
+    margin: 0;
+}
+.connect-width li {
+    display: inline-block;
+}
+.connect-width li + li {
+    margin-left: 20px;
+}
+.connect-width li a i {
+    font-size: 20px;
+    color: #ccc;
+    -webkit-transition: all 300ms linear 0ms;
+       -moz-transition: all 300ms linear 0ms;
+         -o-transition: all 300ms linear 0ms;
+        -ms-transition: all 300ms linear 0ms;
+            transition: all 300ms linear 0ms;
+}
+
+/**** Start Recent Posts ***/
+.widget_recent_entries ul, .widget_recent_comments ul {
+    padding: 0;
+    margin: 0;
+}
+.widget_recent_entries ul li, .widget_recent_comments ul li {
+    margin-bottom: 15px;
+}
+.widget_recent_comments ul li a {
+    display: inline !important;
+}
+/**** End Recent Posts ***/
+
+/**** Start Twitter ***/
+.cs-latest-twitter {
+    position: relative;
+    padding: 0 60px;
+}
+.cs-latest-twitter .cs-header {
+    margin: 0;
+}
+.cs-latest-twitter .cs-latest-twitter-item {
+    text-align: center;
+    color: #fff;
+}
+.cs-latest-twitter .avatar i {
+    font-size: 40px;
+    margin-bottom: 10px !important;
+}
+.cs-latest-twitter .bx-controls-direction a {
+    height: 35px;
+    line-height: 35px;
+    margin: 0;
+    text-align: center;
+    width: 35px;
+    display: block;
+    background: rgba(0, 0, 0, 0.05);
+    position: absolute;
+    top: 32%;
+    outline: none;
+    -webkit-border-radius: 3px;
+       -moz-border-radius: 3px;
+        -ms-border-radius: 3px;
+         -o-border-radius: 3px;
+            border-radius: 3px;
+    -webkit-transition: all 300ms linear 0ms;
+       -moz-transition: all 300ms linear 0ms;
+         -o-transition: all 300ms linear 0ms;
+        -ms-transition: all 300ms linear 0ms;
+            transition: all 300ms linear 0ms;
+}
+.cs-latest-twitter .bx-controls-direction a.bx-prev {
+    left: 0;
+}
+.cs-latest-twitter .bx-controls-direction a.bx-next {
+    right: 0;
+}
+.cs-latest-twitter .bx-controls-direction a i {
+    font-size: 23px;
+    color: #fff;
+    line-height: 35px;
+}
+.cs-latest-twitter .bx-controls-direction a i:before {
+    font-family: FontAwesome;
+}
+/**** End Twitter ***/
+
+/*---- End Footer Top ----*/
+
+/*---- Start Footer Bottom ----*/
+#footer-bottom ul{
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#footer-bottom ul li{
+    display: inline-block;
+
+}
+#footer-bottom ul ul{
+    display: none;
+}
+#footer-bottom ul.menu, #footer-bottom ul.obtheme_mega_menu {
+    padding: 0;
+    text-align: right;
+}
+#footer-bottom ul.menu li + li, #footer-bottom ul.obtheme_mega_menu li + li {
+    padding-left: 10px;
+}
+#footer-bottom ul.menu li a, #footer-bottom ul.obtheme_mega_menu li a {
+    -webkit-transition: all .3s ease-out;
+    -moz-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    -ms-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+/*---- End Footer Bottom ----*/
+
+/*================== End Footer ================*/
+/*Grid Blog*/
+.teaser_grid_container .isotope-item{
+	padding: 10px;
+}
+.teaser_grid_container .isotope-item .post-title{
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.teaser_grid_container .isotope-item .post-thumb img{
+	width: 100%;
+}
+.teaser_grid_container .isotope-item  .isotope-inner > *,.teaser_grid_container .isotope-item  .gallery{
+	margin-bottom: 15px !important;
+}
+/*End Grid Blog*/
+/*Style header site*/
+.container-xs-height {
+    display:table;
+    padding-left:0px;
+    padding-right:0px;
+}
+.row-xs-height {
+    display:table-row;
+}
+.col-xs-height {
+    display:table-cell;
+    float:none;
+    vertical-align: middle;
+}
+@media (min-width: 768px) {
+    .container-sm-height {
+        display:table;
+        padding-left:0px;
+        padding-right:0px;
+    }
+    .row-sm-height {
+        display:table-row;
+    }
+    .col-sm-height {
+        display:table-cell;
+        float:none;
+        vertical-align: middle;
+    }
+}
+@media (min-width: 992px) {
+    .container-md-height {
+        display:table;
+        padding-left:0px;
+        padding-right:0px;
+    }
+    .row-md-height {
+        display:table-row;
+    }
+    .col-md-height {
+        display:table-cell;
+        float:none;
+        vertical-align: middle;
+    }
+    .col-md-height.cs-breadcrumb{
+        text-align: right;
+    }
+}
+@media (min-width: 1200px) {
+    .container-lg-height {
+        display:table;
+        padding-left:0px;
+        padding-right:0px;
+    }
+    .row-lg-height {
+        display:table-row;
+    }
+    .col-lg-height {
+        display:table-cell;
+        float:none;
+        vertical-align: middle;
+    }
+    .col-md-height.cs-breadcrumb{
+        text-align: right;
+    }
+}
+.header-site-wrap .page-title{
+    font-family: lato-light;
+    font-size: 32px;
+    font-weight: 300;
+    margin-bottom: 0px;
+}
+.header-site-wrap .woocommerce-breadcrumb{
+    margin: 0;
+}
+.header-site-wrap .woocommerce-breadcrumb a{
+    font-family: lato-light;
+    font-size: 14px;
+    font-weight: 300;
+}
+/* Start: CONTROL BAR */
+.tag-audio .mejs-container {
+	background: #f5f5f5;
+    height: 67px !important;
+}
+.tag-audio .mejs-container .mejs-controls {
+	background: #f6f6f6;
+	margin-bottom: 18px;
+}
+.tag-audio .mejs-controls .mejs-button button {
+	background: url("../images/play.png") no-repeat center top;
+}
+.tag-audio .mejs-controls .mejs-button.mejs-pause button {
+	background: url("../images/pause.png") no-repeat center top;
+}
+.tag-audio .mejs-controls .mejs-volume-button button {
+	background: url("../images/volume.png") no-repeat center top;
+}
+.tag-audio .mejs-controls .mejs-volume-button.mejs-unmute button {
+	background: url("../images/mute.png") no-repeat center top;
+}
+
+/*End Style header site*/
+.search-no-results .searchform input[type="text"]{ width: 100%; }
