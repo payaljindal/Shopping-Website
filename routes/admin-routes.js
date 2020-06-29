@@ -278,6 +278,24 @@ router.get('/orders',isAdmin, async function (req, res) {
     
   });
 
+// to display all orders to admin
+router.get('/orders/pending',isAdmin, async function (req, res) {  
+    var count;
+
+    await Order.countDocuments(function (err, c) {
+        count = c;
+    });
+
+    Order.find(function (err, orders) {
+        res.render('admin/pending_orders', {
+            orders : orders,
+            count: count
+        });
+        
+    });
+  
+});
+
 
 
 module.exports = router;

@@ -9,7 +9,8 @@ const orderSchema = new schema({
 	address : {type : String , required : true},
 	name : {type : String , required : true},
 	paymentid: {type :String , required : true},
-	contact : {type: Number, required : true}
+	contact : {type: Number, required : true},
+	delivered : {type : Boolean},
 
 });
 

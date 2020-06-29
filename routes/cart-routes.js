@@ -49,7 +49,8 @@ router.post('/buy',isUser , function (req, res) {
         cart : req.user.cart,
         user : req.user,
         paymentid : "payment id",
-        contact : contact
+        contact : contact,
+        delivered : false
     });
     
     order.save();
