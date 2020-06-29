@@ -1,7 +1,18 @@
 <%- include('../_layouts/admin-header') -%>
 <div class="container">
 
-<% if (count > 0) { %>
+
+    <h1 style="font-size: xx-large;text-align: center;"> <b>Pending orders</b> </h1>
+    <% var k = 0; %>
+    <% orders.forEach(function(order){ %>
+        <% if(!order.delivered) { %>
+            <% k=k+1; %>
+            <% } %>
+    <% }); %>
+
+
+<hr>
+<% if (k > 0) { %>
 <table class="table alignmiddle" style="text-align: center;" >
     <thead>
         <tr class="home" >
@@ -59,15 +70,17 @@
                         Pending
                 <% } %>
 
-                    </td>
-           
+            </td>
+            <td>
+                <a href="/admin/products/order/<%- order._id %>" class="btn btn-secondary" style="text-align: center;font: outline;background-color: rgb(74, 160, 134);color: wheat;">Delivered</a>
+            </td>
         </tr>
             <% } %>
         <% }); %>
     </tbody>
 </table>
 <% } else {%>
-<h3 class="text-center">There are no orders.</h3>
+<h3 class="text-center">There are no pending orders.</h3>
 <% }%>
 
 </div>

@@ -173,49 +173,49 @@ router.post('/edit-product/:id',isAdmin, async function (req, res) {
     const id = req.params.id;
 
     await Product.findById(id, function (err, existing) {
-                        if (err)
-                            console.log(err);
+        if (err)
+            console.log(err);
                         
-    if (existing) {
-        existing.available = available;
-        if(name != "")
-          existing.name = name;
-        if(flavour != "")
-          existing.flavour = flavour;
-        if(texture != "")
-          existing.texture = texture;
-        if(taste != "")
-          existing.taste = taste;
-        if(suggesteduse != "")
-          existing.suggesteduse = suggesteduse;
-        if(price != "")
-          existing.price = price;
-        if(category != "")
-          existing.category = category;
-        if(typeof req.body.uimage != "undefined"){
-            var path = 'public/product_images/' + id + '_' + existing.image ;
-            fs.remove(path, async function (err) {
-                if (err) {
-                    console.log(err);
-                } 
-             });
-             const imageFile = req.files.uimage.name;
-             var productImage = req.files.uimage;
-            var path = 'public/product_images/' + id + '_' + imageFile;
-
-            productImage.mv(path, function (err) {
+        if (existing) {
+            existing.available = available;
+            if(name != "")
+            existing.name = name;
+            if(flavour != "")
+            existing.flavour = flavour;
+            if(texture != "")
+            existing.texture = texture;
+            if(taste != "")
+            existing.taste = taste;
+            if(suggesteduse != "")
+            existing.suggesteduse = suggesteduse;
+            if(price != "")
+            existing.price = price;
+            if(category != "")
+            existing.category = category;
+            if(typeof req.body.uimage != "undefined"){
+                var path = 'public/product_images/' + id + '_' + existing.image ;
+                fs.remove(path, async function (err) {
+                    if (err) {
+                        console.log(err);
+                    } 
                 });
-                existing.image = imageFile;
+                const imageFile = req.files.uimage.name;
+                var productImage = req.files.uimage;
+                var path = 'public/product_images/' + id + '_' + imageFile;
 
-          }
-              
-    }
+                productImage.mv(path, function (err) {
+                    });
+                    existing.image = imageFile;
+
+            }
+                
+        }
     try {
        existing.save();
     } catch (err) {
       console.log(err);
     }
-                        });
+    });
     
     req.flash('success','Product edited successfully');
     res.redirect('/admin/products');
@@ -278,7 +278,7 @@ router.get('/orders',isAdmin, async function (req, res) {
     
   });
 
-// to display all orders to admin
+// to display all pending orders to admin
 router.get('/orders/pending',isAdmin, async function (req, res) {  
     var count;
 
@@ -296,6 +296,23 @@ router.get('/orders/pending',isAdmin, async function (req, res) {
   
 });
 
+// update status from pending to done
+router.get('/order/:id',isAdmin, async function (req, res) {
+    const id = req.params.id;
+    await Order.findById(id, function (err, existing) {
+        if (err)
+            console.log(err);
+                        
+       existing.delivered = true;
+    try {
+       existing.save();
+    } catch (err) {
+      console.log(err);
+    }
+    });
+    req.flash('success','Order list updated successfully!');
+    res.redirect('/admin/products/orders/pending');
+});
 
 
 module.exports = router;
