@@ -43,6 +43,8 @@
             </span></td>
         </tr>
         <tr>
+            <% var stotal = total*100; %>
+        
             
             <td colspan="2"  align="right">
             </td>
@@ -51,12 +53,13 @@
                 <form action="/charge" method="POST">
                   <script
                     src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-                    data-key="pk_test_q46Znbe8xt2v1pxVn0lgyZtD00eVsJwlRV"
-                    data-amount="2500"
+                    data-key="!"
+                    data-amount= "<%= parseFloat(stotal).toFixed(2) %>"
                     data-name="Shopping website"
                     data-description="Buy our products"
                     data-image="/images/methodology.PNG"
-                    data-locale="auto">
+                    data-locale="auto"
+                    data-currency="inr">
                   </script>
                   <script>
                     // Hide default stripe button

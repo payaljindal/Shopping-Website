@@ -17,8 +17,15 @@ router.get('/contact',function(req,res){
 
 // Charge Route
 router.post('/charge', (req, res) => {
-    const amount = 2500;
-    
+  // console.log(req.user.cart);
+  var cart = req.user.cart;
+     var total = 0; 
+     cart.forEach(function(product){ 
+         var sub = parseFloat(product.qty * product.price).toFixed(2) 
+         total += +sub 
+     });
+
+    const amount = total*100;
     stripe.customers.create({
       email: req.body.stripeEmail,
       source: req.body.stripeToken
@@ -29,7 +36,9 @@ router.post('/charge', (req, res) => {
       currency: 'inr',
       customer: customer.id
     }))
-    .then(charge => res.render('success'));
+    .then(charge => res.render('success',{
+      title : "Buy Form"
+    }));
   });
 
 module.exports = router;
