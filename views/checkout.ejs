@@ -47,7 +47,23 @@
             <td colspan="2"  align="right">
             </td>
             <td colspan="2" align="center">
-                <a class="btn btn-success buynow" href="/cart/buy"  style="font-size: 16px;margin-bottom: 12px;">Checkout</a>
+                
+                <form action="/charge" method="POST">
+                  <script
+                    src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+                    data-key="pk_test_q46Znbe8xt2v1pxVn0lgyZtD00eVsJwlRV"
+                    data-amount="2500"
+                    data-name="Shopping website"
+                    data-description="Buy our products"
+                    data-image="/images/methodology.PNG"
+                    data-locale="auto">
+                  </script>
+                  <script>
+                    // Hide default stripe button
+                    // document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
+                  </script>
+                  
+                </form>
             </td>
         </tr>
         
@@ -67,7 +83,5 @@
     });
         
     </script>
-
-
 </div>
 <%- include ('_layouts/footer') -%>

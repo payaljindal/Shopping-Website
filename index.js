@@ -31,6 +31,10 @@ app.use(session({
   // cookie : { maxAge : 180 * 60 * 1000 }
 }));
 
+// stripe setup 
+const keys = require('./config/keys');
+const stripe = require('stripe')(keys.stripeSecretKey);
+
 // view engine setup
 app.set('views', path.join(__dirname,'views'));
 app.set('view engine','ejs');
