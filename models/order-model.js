@@ -2,7 +2,6 @@ const mongoose = require('mongoose');
 const schema = mongoose.Schema;
 
 
-// order will come from frontend, so will add later
 const orderSchema = new schema({
 	user : {type : schema.Types.ObjectId, ref : 'User'},
 	cart : {type : Array, required : true},
