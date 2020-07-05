@@ -1,0 +1,93 @@
+<%- include ('_layouts/header') -%>
+
+<div class="container">
+    <span style="align-items: center;font-size: 50px">Hello <%= user.name%>  
+    <% if(user.admin){ %>
+        (admin)
+        <% } %>
+    </span>
+    <br>
+    <span style="font-size: 20px;">
+        Your email : <%= user.email %>
+    </span>
+    <br><br>
+   
+    <% if(orders.length>0){ %>
+    
+
+    <center>
+    <span style="font-size: 29px;"><u>Orders you've placed -</u></span>
+        <br>
+    <table class="table alignmiddle" style="text-align: center;" >
+        <thead>
+            <tr class="home" >
+                <th style="text-align: center;font-size: medium;">Sr. no.</th>
+                <th style="text-align: center;font-size: medium;">Products ordered</th> 
+                <th style="text-align: center;font-size: medium;">Total</th>
+                <th style="text-align: center;font-size: medium;">Delivery</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            <% var i=0; %>
+            <% orders.forEach(function(order){ %>
+                <% var total = 0; %>
+                <% i=i+1; %>
+            <tr>
+                <td><span style="font-size: medium;"><%= i %></span></td>
+                <td >
+                   
+                   <% order.cart.forEach(function(a){ %>
+                    <span style="font-size: medium;"><%= a.title %> ( Quantity : <%= a.qty %>)</span>
+                    
+
+                    <% var sub = parseFloat(a.qty * a.price).toFixed(2) %>
+                                <% total += +sub %>
+                    <br>
+                    <% }); %>
+                       
+                </td>
+                <td>
+                   <span style="font-size: large;"> <b> <i class="fa fa-rupee"></i> <%= total %> </b> </span>
+                </td>
+                <td>
+                    <span style="font-size: medium;">
+                    <% if(order.delivered){ %>
+                        Done
+                        <% } else { %>
+                            Pending
+                    <% } %>
+                    </span>
+                        </td>
+               
+            </tr>
+            <% }); %>
+        </tbody>
+    </table>
+
+<% }else{ %>
+    <center>  
+        <span style="font-size: 30px;">You've not ordered any products yet!</span> 
+     </center>
+   
+<% } %>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%- include('_layouts/footer') %>

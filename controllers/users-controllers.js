@@ -8,6 +8,7 @@ const Order = require('../models/order-model.js')
 const Cart = require('../models/cart-model.js')
 const passport = require('passport');
 const { checkBody } = require('express-validator');
+const { use } = require('passport');
 
 const getUsers = async (req,res,next) => {
 
@@ -171,27 +172,22 @@ const logout = (req,res,next) => {
 }
 
 
-// to be added
+// user profile page
 const profile = (req,res,next) => {
-    
-    // Order.find({user : req.user}, function(err,orders){
-    //   if(err){
-    //     return res.write('Errorr');
-    //   }
-    //   var cart;
-    //   orders.forEach(function(order){
-    //     cart = new Cart(order.cart);
-    //     order.items = cart.generatearray();
-    //   });
-    //   res.render('user/profile', {orders : orders});
-    // });
+    var user = req.user;
 
+    Order.find({user : req.user}, function(err,orders){
+      if(err){
+        return res.write('Errorr');
+      }
 
-    console.log("profie page");
-    res.json({
-      message : "profile page"
-    })
-
+      res.render('profile',{
+      title: "Profile",
+      user: user,
+      orders  : orders
+      });
+     
+    });
 }
 
 exports.getUsers = getUsers;

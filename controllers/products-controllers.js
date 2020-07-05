@@ -69,8 +69,6 @@ const getProductsByCategory = async (req,res,next) => {
     var loggedIn = (req.isAuthenticated()) ? true : false;
 
   var count;
-
-
   let user = req.user;
 
   await Product.countDocuments(function (err, c) {

@@ -9,7 +9,6 @@ const userSchema = new Schema({
   username : {  type : String, required : true },
   admin : { type : Number},
   cart : [],
-
 });
 
 userSchema.plugin(uniqueValidator);

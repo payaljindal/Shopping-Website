@@ -1,6 +1,6 @@
 
     <%- include('_layouts/header') -%>
-    <br><br><br><br><br>
+    <br><br><br>
     <div class="container">
 
         <div class="row">
@@ -17,8 +17,8 @@
                         </div>
                         <div class="col-xs-12">
                             <div class="form-group">
-                                <label for="address" style="font-size: large;">Email</label>(Fill the same email, which you filled in the previous form)
-                                <input type="text" style="padding: 2px 2px;font-size: medium;" id="contact" class="form-control" required name="contact">
+                                <label for="address" style="font-size: large;">Email</label>
+                                <input type="text" style="padding: 2px 2px;font-size: medium;" id="contact" class="form-control" required name="email">
                             </div>
                         </div>
                         <div class="col-xs-12">
@@ -30,7 +30,7 @@
                         <div class="col-xs-12">
                             <div class="form-group">
                                 <label for="address" style="font-size: large;">Contact No.</label>
-                                <input type="text" style="padding: 2px 2px;font-size: medium;" id="contact" class="form-control" required name="contact">
+                                <input type="number" style="padding: 2px 2px;font-size: medium;" id="contact" class="form-control" required name="contact">
                             </div>
                         </div>
                         
@@ -41,9 +41,11 @@
                 </form>
             </div>
         </div>
+
+
         </div>
         
         
-        <%- include('_layouts/admin-footer') -%>
+        <%- include('_layouts/footer') -%>
 
 
