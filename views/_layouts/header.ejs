@@ -81,27 +81,29 @@
   <span style="color:#065722;font-size: medium;"><br>We believe in the famous adage : “You are what you eat” </span>
   </center>
   <br>
-   
-     
-      <nav class="navbar sticky-top navbar-expand-lg navbar-light" style="background-color: #e0eee5;">
-        <div class="navbar-header">
-          <a class="navbar-brand" href="/"> Samy Greens </a>
-        </div>
-       
-        <div id="navbarNavDropdown" class="collapse navbar-collapse">
-          <div class="navbar-collapse collapse w-100 order-1 order-md-0 dual-collapse2">
-          <ul class="nav navbar-nav">
-            <li><a href="/" class="nav-link mx-4"><span  style="color:black;font-size: 1.8em" >Home</span></a></li>
-            <li><a href="/about" class="nav-link mx-4"><span  style="color:black;font-size: 1.8em" >About</span></a></li>
-            <!-- <li><a href="/contact" class="nav-link mx-4"><span  style="color:black;font-size: 1.8em" >Contact</span></a></li> -->
-            <li><a href="/products/all" class="nav-link mx-4" ><span  style="color:black;font-size: 1.8em" >All products</span></a></li>  
+
+      <nav class="navbar navbar-expand-lg navbar-light   sticky-top" style="background-color: #e0eee5;">
+        <a class="navbar-brand" href="/" > <span  style="font-size: 1.8em" >SamyGreens</span></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mr-auto">
+            <li>  </li>
+            <li class="nav-item">
+              <a href="/" class="nav-link mx-4"><span  style="font-size: 1.8em" >Home</span></a>
+            </li>
+            <li  class="nav-item"><a href="/about" class="nav-link mx-4"><span  style="font-size: 1.8em" >About</span></a></li>
+
+            <li class="nav-item">
+              <a href="/products/all" class="nav-link mx-4" ><span  style="font-size: 1.8em" >All products</span></a>
+            </li>
           </ul>
-          </div>
-      <div class="navbar-collapse collapse w-100 order-3 dual-collapse2">
-        <ul class="navbar-nav ml-auto">
+        
+            <ul class="navbar-nav mr-auto" >
         <% if (user) { %>
           <li>
-            <a href="/cart/checkout" class="nav-link mx-4">  <span  style="color:black;font-size: 1.8em" >My Cart (
+            <a href="/cart/checkout" class="nav-link mx-4">  <span  style="font-size: 1.8em" >My Cart (
                 <% if (typeof user.cart !== "undefined") { %>
                 <%= user.cart.length %>
                 <% } else {%>
@@ -110,25 +112,28 @@
             )</span></a>
         </li>
         <li>
-          <a href="/users/profile" class="nav-link mx-4"><span  style="color:black;font-size: 1.8em" > My orders </span></a>
+          <a href="/users/profile" class="nav-link mx-4"><span  style="font-size: 1.8em" > My orders </span></a>
         </li>
           <% } else {%>   
           <% } %>
 
         <% if (user) { %>
-          <li><a href="/users/logout " class="nav-link mx-4 "> <span  style="color:black;font-size: 1.8em" >Logout</span></a></li>
+          <li><a href="/users/logout " class="nav-link mx-4 "> <span  style="font-size: 1.8em" >Logout</span></a></li>
           <% } else {%>
-          <!-- <li><a href="/users/register" class="nav-link mx-4 " ><span  style="color:black;font-size: 1.8em" >Register</span></a></li> -->
-          <li><a href="/users/login" class="nav-link mx-4"><span  style="color:black;font-size: 1.8em" >Log in</span></a></li>
+         
+          <li><a href="/users/login" class="nav-link mx-4"><span  style="font-size: 1.8em" >Log in</span></a></li>
           <% } %>
           
           <% if (user && user.admin == 1) { %>
-            <li><a href="/admin/products" class="nav-link mx-4"><span  style="color:black;font-size: 1.8em" >Admin Area</span></a></li>
+            <li><a href="/admin/products" class="nav-link mx-4"><span  style="font-size: 1.8em" >Admin Area</span></a></li>
             <% }%>
         </ul>
-    </div>
-    </div>
+
+        
+        </div>
       </nav>
+
+
         <div class="container">
           <%- messages('messages', locals) -%>
           
