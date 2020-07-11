@@ -96,9 +96,12 @@ app.use((error, req, res, next) => {
   if (res.headerSent) {
     return next(error);
   }
-  res.status(error.code || 500);
+  const status = error.status || 500;
+  res.status(status);
   res.json({ message: error.message || 'An unknown error occurred!' });
 });
+
+
 
 
 mongoose
@@ -106,5 +109,5 @@ mongoose
     'mongodb+srv://Payal:Shipshop@cluster0-sw3qo.mongodb.net/test?retryWrites=true&w=majority',
     { useCreateIndex: true,useUnifiedTopology: true, useNewUrlParser: true },
   )
-  .then(() => app.listen(5000, console.log("Your server is up man.....")))
+  .then(() => app.listen(process.env.PORT || 5000, console.log("Your server is up man.....")))
   .catch((err) => console.log(err));
