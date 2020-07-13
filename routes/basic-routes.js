@@ -1,8 +1,15 @@
 var express = require('express');
+const Product = require('../models/product-model');
 var router = express.Router();
 
 router.get('/',function(req,res){
-    res.render('home',{title : 'Home'});
+  Product.find(function (err, products) {
+    res.render('home',{
+      title : 'Home',
+    products : products
+  });
+});
+    
 });
 
 router.get('/about',function(req,res){
