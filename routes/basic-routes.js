@@ -9,7 +9,6 @@ router.get('/',function(req,res){
     products : products
   });
 });
-    
 });
 
 router.get('/about',function(req,res){
@@ -20,6 +19,29 @@ router.get('/contact',function(req,res){
     res.render('contactus',{title : 'Contact Us'});
 });
 
+router.get('/herbs',function(req,res){
+  res.render('herbs',{
+    title : 'About Herbs',
+  });
+});
+
+router.get('/rockets',function(req,res){
+  res.render('rockets',{
+    title : 'About Rockets',
+  });
+});
+
+router.get('/flowers',function(req,res){
+  res.render('flowers',{
+    title : 'About Flowers',
+  });
+});
+
+router.get('/basils',function(req,res){
+  res.render('basils',{
+    title : 'About Basils',
+  });
+});
 module.exports = router;
 
 
