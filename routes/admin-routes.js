@@ -95,7 +95,7 @@ if(error === 0){
       category,
       available,
     });
-    console.log(available);
+   
     try {
       await created.save(function (err) {
                         if (err){

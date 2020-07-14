@@ -54,7 +54,7 @@ router.post('/buy',isUser , function (req, res) {
     });
     
     order.save();
-    console.log(order);
+    
     req.flash('success', 'Successfully ordered! We will deliver the order to you soon!');
     res.redirect('/cart/checkout');
 });
