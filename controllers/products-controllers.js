@@ -14,7 +14,7 @@ const getProducts = async (req,res,next) => {
 
   Product.find(function (err, products) {
       res.render('index', {
-        title: 'Shopping Cart',
+        title: 'All Products',
           products: products,
           count: count,
           loggedIn: loggedIn,
@@ -42,7 +42,7 @@ const details = async (req,res,next) => {
               res.redirect('/');
           } else {
                       res.render('details', {
-                        title: 'Shopping Cart',
+                        title: 'Samy Greens',
                           name : p.name,
                           errors: errors,
                           flavour : p.flavour,

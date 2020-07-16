@@ -5,7 +5,7 @@ var router = express.Router();
 router.get('/',function(req,res){
   Product.find(function (err, products) {
     res.render('home',{
-      title : 'Home',
+      title : 'Samy Greens',
     products : products
   });
 });
