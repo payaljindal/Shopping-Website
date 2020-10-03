@@ -104,8 +104,61 @@
             </li>
             <li  class="nav-item"><a href="/about" class="nav-link mx-4"><span  style="font-size: 1.8em" >About</span></a></li>
             <li  class="nav-item"><a href="/contact" class="nav-link mx-4"><span  style="font-size: 1.8em" >Contact Us</span></a></li>
-            <li class="nav-item">
-              <a href="/products/all" class="nav-link mx-4" ><span  style="font-size: 1.8em" >All products</span></a>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle nav-link mx-4" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <span  style="font-size: 1.8em" >Products</span>
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown" width="100">
+                
+                <div class="dropdown-item">
+                  <form method="post" action="/products/category" >
+                  
+                    <input name="category" class="form-control hidden" value="Microgreens" style="padding: 20px 9px;font-size: 16px"></input>
+                    
+                    <button style="border: 0ch;font-size: 1.8em;background-color: white;"> Microgreens</button>
+                </form>
+                </div>
+
+
+              <form method="post" action="/products/category" class="dropdown-item">
+                <input name="category" class="form-control hidden" value="Edible Flowers" style="padding: 20px 9px;font-size: 16px"></input>
+                <button style="border: 0ch;font-size: 1.8em;background-color: white;">Edible Flowers</button>
+            </form>
+
+            <form method="post" action="/products/category" class="dropdown-item">
+              <input name="category" class="form-control hidden" value="Fresh Herbs" style="padding: 20px 9px;font-size: 16px"></input>
+
+              <button style="border: 0ch;font-size: 1.8em;background-color: white;">Fresh Herbs</button>
+          </form>
+
+
+          <form method="post" action="/products/category" class="dropdown-item">
+            <input name="category" class="form-control hidden" value="Rockets" style="padding: 20px 9px;font-size: 16px"></input>
+            <button style="border: 0ch;font-size: 1.8em;background-color: white;">Rockets</button>
+        </form>
+
+
+        <form method="post" action="/products/category" class="dropdown-item">
+          <input name="category" class="form-control hidden" value="Basils" style="padding: 20px 9px;font-size: 16px"></input>
+          <button style="border: 0ch;font-size: 1.8em;background-color: white;">Basils</button>
+      </form>
+
+
+      <form method="post" action="/products/category" class="dropdown-item">
+        <input name="category" class="form-control hidden" value="Baby Vegetables" style="padding: 20px 9px;font-size: 16px"></input>
+        <button style="border: 0ch;font-size: 1.8em;background-color: white;">Baby Vegetables</button>
+    </form>
+
+    <form method="post" action="/products/category" class="dropdown-item">
+      <input name="category" class="form-control hidden" value="Others" style="padding: 20px 9px;font-size: 16px"></input>
+      <button style="border: 0ch;font-size: 1.8em;background-color: white;">Others</button>
+  </form>
+                
+                
+                
+                <div class="dropdown-divider"></div>
+                <a class="dropdown-item" href="/products/all"><span  style="font-size: 1.8em" >All products</span></a>
+              </div>
             </li>
           </ul>
         
